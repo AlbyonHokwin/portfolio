@@ -9,17 +9,16 @@ type PropsType = {
 }
 
 export default function Home({ skills }: PropsType) {
-
   return (
     <>
       <Head>
-        <title>Camille HAUSTANT - Portfolio</title>
+        <title>Camille HAUSTANT</title>
         <meta name="description" content="Portfolio de Camille HAUSTANT. Vous trouverez ici mes expériences et mes projets." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.ico" />
       </Head>
       <main className={styles.main}>
-        <div>{skills && skills[0]._type}</div>
+        <div></div>
       </main>
     </>
   )
