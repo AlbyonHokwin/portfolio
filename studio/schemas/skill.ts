@@ -1,11 +1,11 @@
-import { defineType } from "sanity";
+import { defineType, defineField } from "sanity";
 
 export default defineType({
     name: 'skill',
     type: 'document',
     title: 'Compétence',
     fields: [
-        { name: 'skill', type: 'string', title: 'Compétence' },
-        { name: 'image', type: 'image', options: { hotspot: true }, title: 'Image' },
+        defineField({ name: 'skill', type: 'string', title: 'Compétence' }),
+        defineField({ name: 'image', type: 'image', options: { hotspot: true }, title: 'Image' }),
     ]
 })
