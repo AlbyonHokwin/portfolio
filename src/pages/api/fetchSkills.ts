@@ -1,16 +1,19 @@
 import { sanityClient as client } from './sanityClient';
+import type { skillType } from '@/types/skillType';
 
-import type { sanityRootType } from "@/types/SanityRootType";
-import type { fetchedImageType } from "@/types/fetchedImageType";
-
-type fetchedSkillType = sanityRootType & {
-    skill: string;
-    image: fetchedImageType;
-}
 const fetchSkills = async () => {
-    const fetchedSkills: fetchedSkillType[] = await client.fetch(`*[_type == "skill"]{ skill, image{alt, asset->{url}}}`);
+    const fetchedSkills: skillType[] = await client.fetch(`*[_type == "skill" && isActual]{
+        skill,
+        image{alt, caption, "url": asset->url}
+    }`);
 
-    return fetchedSkills.map((fetchedSkill: fetchedSkillType) => ({ skill: fetchedSkill.skill, image: { alt: fetchedSkill.image.alt, url: fetchedSkill.image.asset.url } }));
+    return fetchedSkills.map((fetchedSkill: skillType) => ({
+        ...fetchedSkill,
+        image: {
+            ...fetchedSkill.image,
+            caption: fetchedSkill.image.caption || '',
+        }
+    }));
 }
 
 export { fetchSkills };
