@@ -3,7 +3,7 @@ import { sanityClient as client } from './sanityClient';
 import type { sanityRootType } from "@/types/SanityRootType";
 import type { fetchedImageType } from "@/types/fetchedImageType";
 
-export type fetchedSkillType = sanityRootType & {
+type fetchedSkillType = sanityRootType & {
     skill: string;
     image: fetchedImageType;
 }
