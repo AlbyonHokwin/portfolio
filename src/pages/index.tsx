@@ -1,22 +1,23 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import { fetchSkills } from './api/fetchSkills';
+import { fetchProjects } from './api/fetchProjects';
 import { fetchExperiences } from './api/fetchExperiences';
+import { fetchSkills } from './api/fetchSkills';
 
-import type { skillType } from '@/types/skillType';
+import type { projectType } from '@/types/projectType';
 import type { experienceType } from '@/types/experienceType';
+import type { skillType } from '@/types/skillType';
 
 type PropsType = {
+  projects: projectType[];
   experiences: experienceType[];
   skills: skillType[];
 }
 
-export default function Home({ experiences, skills }: PropsType) {
-  // console.log(skills.length);
-  // skills[0] && console.log(skills[0]);
-  console.log(experiences.length);
-  experiences[0] && console.log(experiences[2]);
+export default function Home({ projects, experiences, skills }: PropsType) {
+  console.log(projects.length);
+  console.log(projects[0]);
 
   return (
     <>
@@ -35,14 +36,17 @@ export default function Home({ experiences, skills }: PropsType) {
 
 export async function getStaticProps() {
   // Don't use of await to parallelize fetches
+  const projectsPromise = fetchProjects();
   const experiencesPromise = fetchExperiences();
   const skillsPromise = fetchSkills();
 
-  const skills: skillType[] = await skillsPromise;
+  const projects: projectType[] = await projectsPromise;
   const experiences: experienceType[] = await experiencesPromise;
+  const skills: skillType[] = await skillsPromise;
 
   return {
     props: {
+      projects,
       experiences,
       skills,
     }
