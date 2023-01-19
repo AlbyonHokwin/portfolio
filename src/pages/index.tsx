@@ -1,14 +1,23 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import { sanityClient as client } from '@/pages/api/sanityClient';
-import type { SkillType } from '@/types/SkillType';
+import { fetchSkills } from './api/fetchSkills';
+import { fetchExperiences } from './api/fetchExperiences';
+
+import type { skillType } from '@/types/skillType';
+import type { experienceType } from '@/types/experienceType';
 
 type PropsType = {
-  skills: SkillType[];
+  experiences: experienceType[];
+  skills: skillType[];
 }
 
-export default function Home({ skills }: PropsType) {
+export default function Home({ experiences, skills }: PropsType) {
+  // console.log(skills.length);
+  // skills[0] && console.log(skills[0]);
+  console.log(experiences.length);
+  experiences[0] && console.log(experiences[2]);
+
   return (
     <>
       <Head>
@@ -25,11 +34,17 @@ export default function Home({ skills }: PropsType) {
 }
 
 export async function getStaticProps() {
-  const skills: SkillType[] = await client.fetch(`*[_type == "skill"]`);
+  // Don't use of await to parallelize fetches
+  const experiencesPromise = fetchExperiences();
+  const skillsPromise = fetchSkills();
+
+  const skills: skillType[] = await skillsPromise;
+  const experiences: experienceType[] = await experiencesPromise;
 
   return {
     props: {
-      skills
+      experiences,
+      skills,
     }
   }
 }
