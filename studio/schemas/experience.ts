@@ -7,7 +7,7 @@ export default defineType({
     fields: [
         defineField({ name: 'jobTitle', type: 'string', title: 'Nom du poste' }),
         defineField({ name: 'company', type: 'string', title: 'Nom de l\'entreprise' }),
-        defineField({ name: 'logo', type: 'image', title: 'Logo', options: { hotspot: true } }),
+        defineField({ name: 'logo', type: 'accessibleImage', title: 'Logo'}),
         defineField({ name: 'location', type: 'string', title: 'Lieu' }),
         defineField({ name: 'startDate', type: 'date', title: 'Date de début' }),
         defineField({ name: 'endDate', type: 'date', title: 'Date de fin' }),

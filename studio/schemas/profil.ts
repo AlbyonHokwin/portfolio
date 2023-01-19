@@ -10,8 +10,8 @@ export default defineType({
         defineField({ name: 'description', type: 'text', title: 'Description' }),
         defineField({ name: 'email', type: 'string', title: 'Adresse e-mail' }),
         defineField({ name: 'phone', type: 'string', title: 'Numéro de téléphone' }),
-        defineField({ name: 'picture', type: 'image', title: 'Image de profil', options: { hotspot: true } }),
-        defineField({ name: 'pictureGit', type: 'image', title: 'Image de profil sur github', options: { hotspot: true } }),
+        defineField({ name: 'picture', type: 'accessibleImage', title: 'Image de profil' }),
+        defineField({ name: 'pictureGit', type: 'accessibleImage', title: 'Image de profil sur github' }),
         defineField({
             name: 'socials',
             title: 'Réseaux sociaux',

@@ -6,6 +6,6 @@ export default defineType({
     title: 'Compétence',
     fields: [
         defineField({ name: 'skill', type: 'string', title: 'Compétence' }),
-        defineField({ name: 'image', type: 'image', options: { hotspot: true }, title: 'Image' }),
+        defineField({ name: 'image', type: 'accessibleImage', title: 'Image' }),
     ]
 })
