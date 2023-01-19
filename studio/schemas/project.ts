@@ -16,12 +16,23 @@ export default defineType({
             type: 'array',
             of: [defineArrayMember({ type: 'accessibleImage' })]
         }),
+        defineField({
+            name: 'githubLinks',
+            title: 'Lien(s) GitHub',
+            type: 'array',
+            of: [
+                defineArrayMember({ name: 'githubLink', type: 'object', title: 'Lien GitHub', fields: [
+                    { name: 'name', type: 'string', title: 'Nom' },
+                    { name: 'link', type: 'url', title: 'Lien' },
+                ] }),
+            ]
+        }),
         defineField({ name: 'video', type: 'url', title: 'Vidéo' }),
         defineField({
             name: 'skills',
             title: 'Compétences',
             type: 'array',
             of: [defineArrayMember({ type: 'reference', to: [{ type: 'skill' }] })]
-        })
+        }),
     ]
 })
