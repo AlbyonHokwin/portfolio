@@ -7,5 +7,6 @@ export default defineType({
     fields: [
         defineField({ name: 'skill', type: 'string', title: 'Compétence' }),
         defineField({ name: 'image', type: 'accessibleImage', title: 'Image' }),
+        defineField({ name: 'isActual', type: 'boolean', title: 'Actuel', initialValue: true}),
     ]
 })
