@@ -1,4 +1,4 @@
-export type SanityRootType = {
+export type sanityRootType = {
     _id: string;
     _rev: string;
     _createdAt: string;

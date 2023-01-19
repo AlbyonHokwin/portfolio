@@ -1,7 +1,7 @@
-import type { SanityRootType } from "./SanityRootType";
-import type { ImageType } from "./ImageType";
-
-export type SkillType = SanityRootType & {
+export type skillType = {
     skill: string;
-    image: ImageType;
+    image: {
+        alt: string;
+        url: string;
+    }
 }

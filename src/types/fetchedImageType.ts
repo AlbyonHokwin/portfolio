@@ -1,8 +1,10 @@
-export type ImageType = {
+export type fetchedImageType = {
+    alt: string;
     asset: {
         _ref: string;
         _type: "reference";
-    };
+        url: 'string'; // When dereferencing
+    }
     crop: {
         _type: "sanity.imageCrop";
         top: number;
