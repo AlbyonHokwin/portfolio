@@ -2,7 +2,9 @@ import { defineType, defineField, defineArrayMember } from "sanity";
 
 export default defineType({
     name: 'accessibleImage',
-    type: 'object',
+    type: 'image',
+    title: 'Image',
+    options: { hotspot: true },
     fields: [
         {
             name: 'alt',
@@ -13,18 +15,12 @@ export default defineType({
             validation: Rule => [
                 Rule.required(),
             ],
-            options: {
-                isHighlighted: true,
-            }
         },
         {
             name: 'caption',
             type: 'string',
             title: 'Caption',
             hidden: ({ parent }) => !parent?.asset,
-            options: {
-                isHighlighted: true
-            }
         }
     ]
 })
