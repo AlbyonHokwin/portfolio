@@ -23,7 +23,7 @@ export default defineType({
             of: [
                 defineArrayMember({ name: 'githubLink', type: 'object', title: 'Lien GitHub', fields: [
                     { name: 'name', type: 'string', title: 'Nom' },
-                    { name: 'link', type: 'url', title: 'Lien' },
+                    { name: 'url', type: 'url', title: 'Lien' },
                 ] }),
             ]
         }),
