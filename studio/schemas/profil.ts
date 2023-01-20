@@ -1,7 +1,7 @@
 import { defineType, defineField, defineArrayMember } from "sanity";
 
 export default defineType({
-    name: 'profil',
+    name: 'profile',
     type: 'document',
     title: 'Profil',
     fields: [
