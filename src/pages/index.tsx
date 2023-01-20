@@ -1,34 +1,37 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Me from '@/components/Me';
 import styles from '@/styles/Home.module.css'
+
+import { fetchProfile } from './api/fetchProfile';
 import { fetchProjects } from './api/fetchProjects';
 import { fetchExperiences } from './api/fetchExperiences';
 import { fetchSkills } from './api/fetchSkills';
 
+import type { profileType } from '@/types/profileType';
 import type { projectType } from '@/types/projectType';
 import type { experienceType } from '@/types/experienceType';
 import type { skillType } from '@/types/skillType';
 
-type PropsType = {
+type propsType = {
+  profile: profileType;
   projects: projectType[];
   experiences: experienceType[];
   skills: skillType[];
 }
 
-export default function Home({ projects, experiences, skills }: PropsType) {
-  console.log(projects.length);
-  console.log(projects[0]);
-
+export default function Home({ profile, projects, experiences, skills }: propsType) {
   return (
     <>
       <Head>
-        <title>Camille HAUSTANT</title>
+        <title>Camille HAUSTANT - Portfolio</title>
         <meta name="description" content="Portfolio de Camille HAUSTANT. Vous trouverez ici mes expériences et mes projets." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.ico" />
       </Head>
       <main className={styles.main}>
-        <div></div>
+        <section id="me">
+          <Me profile={profile} />
+        </section>
       </main>
     </>
   )
@@ -36,19 +39,28 @@ export default function Home({ projects, experiences, skills }: PropsType) {
 
 export async function getStaticProps() {
   // Don't use of await to parallelize fetches
-  const projectsPromise = fetchProjects();
-  const experiencesPromise = fetchExperiences();
-  const skillsPromise = fetchSkills();
+  const profilePromise: Promise<profileType> = fetchProfile()
+  const projectsPromise: Promise<projectType[]> = fetchProjects();
+  const experiencesPromise: Promise<experienceType[]> = fetchExperiences();
+  const skillsPromise: Promise<skillType[]> = fetchSkills();
 
-  const projects: projectType[] = await projectsPromise;
-  const experiences: experienceType[] = await experiencesPromise;
-  const skills: skillType[] = await skillsPromise;
+  let profile: profileType
+  let projects: projectType[]
+  let experiences: experienceType[]
+  let skills: skillType[]
+
+  [
+    profile,
+    projects,
+    experiences,
+    skills
+  ] = await Promise.all([profilePromise, projectsPromise, experiencesPromise, skillsPromise]);
 
   return {
     props: {
+      profile,
       projects,
       experiences,
       skills,
     }
-  }
-}
+  }}
