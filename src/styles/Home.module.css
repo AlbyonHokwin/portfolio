@@ -1,8 +1,12 @@
 .main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  height: 100vh;
+  width: 100vw;
   overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: center;
 }
