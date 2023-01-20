@@ -5,8 +5,6 @@ export type profileType = {
     lastname: string;
     description: string;
     email: string;
-    // phone: string;
     picture: imageType;
     pictureGit: imageType;
-    socials: socialType[];
 };

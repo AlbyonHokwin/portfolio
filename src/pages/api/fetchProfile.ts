@@ -8,12 +8,14 @@ const fetchProfile = async () => {
         firstname, lastname, email, description,
         picture{alt, caption, "url": asset->url},
         pictureGit{alt, caption, "url": asset->url},
-        socials[]->{
-            name,
-            url,
-            image{alt, caption, "url": asset->url}    
-        }
+        // socials[]->{
+        //     name,
+        //     url,
+        //     image{alt, caption, "url": asset->url}    
+        // }
     }[0]`);
+
+    // console.log(fetchedProfile);
 
     return {
         ...fetchedProfile,
@@ -25,13 +27,13 @@ const fetchProfile = async () => {
             ...fetchedProfile.pictureGit,
             caption: fetchedProfile.pictureGit.caption || '',
         },
-        socials: fetchedProfile.socials.map((social: socialType) => ({
-            ...social,
-            image: {
-                ...social.image,
-                caption: social.image.caption || '',
-            }
-        }))
+        // socials: fetchedProfile.socials.map((social: socialType) => ({
+        //     ...social,
+        //     image: {
+        //         ...social.image,
+        //         caption: social.image.caption || '',
+        //     }
+        // }))
     }
 };
 
