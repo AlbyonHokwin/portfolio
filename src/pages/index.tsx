@@ -24,6 +24,8 @@ type propsType = {
 }
 
 export default function Home({ profile, projects, experiences, skills }: propsType) {
+  if (!(profile && projects && experiences && skills)) return <div>Chargement</div>;
+
   return (
     <>
       <Head>
@@ -33,19 +35,19 @@ export default function Home({ profile, projects, experiences, skills }: propsTy
         <link rel="icon" href="/icon.ico" />
       </Head>
       <main className={styles.main}>
-        <section id="me">
+        <section id="me" className={styles.section}>
           <Me profile={profile} />
         </section>
-        <section id="projects">
+        <section id="projects" className={styles.section}>
           <Projects projects={projects} />
         </section>
-        <section id="experiences">
+        <section id="experiences" className={styles.section}>
           <Experiences experiences={experiences} />
         </section>
-        <section id="skills">
+        <section id="skills" className={styles.section}>
           <Skills skills={skills} />
         </section>
-        <section id="contact-me">
+        <section id="contact-me" className={styles.section}>
           <ContactMe />
         </section>
       </main>
