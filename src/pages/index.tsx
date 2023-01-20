@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Me from '@/components/Me';
 import Projects from '@/components/Projects';
+import Experiences from '@/components/Experiences';
+import Skills from '@/components/Skills';
+import ContactMe from '@/components/ContactMe';
 import styles from '@/styles/Home.module.css'
 
 import { fetchProfile } from './api/fetchProfile';
@@ -33,8 +36,17 @@ export default function Home({ profile, projects, experiences, skills }: propsTy
         <section id="me">
           <Me profile={profile} />
         </section>
-        <section id="me">
+        <section id="projects">
           <Projects projects={projects} />
+        </section>
+        <section id="experiences">
+          <Experiences experiences={experiences} />
+        </section>
+        <section id="skills">
+          <Skills skills={skills} />
+        </section>
+        <section id="contact-me">
+          <ContactMe />
         </section>
       </main>
     </>
@@ -67,4 +79,5 @@ export async function getStaticProps() {
       experiences,
       skills,
     }
-  }}
+  }
+}
