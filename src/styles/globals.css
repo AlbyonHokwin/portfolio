@@ -87,10 +87,10 @@ body {
   overflow-x: hidden;
 }
 
-body {
+/* body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb))
-}
+} */
 
 a {
   color: inherit;
