@@ -15,16 +15,19 @@ import type { profileType } from '@/types/profileType';
 import type { projectType } from '@/types/projectType';
 import type { experienceType } from '@/types/experienceType';
 import type { skillType } from '@/types/skillType';
+import { GetStaticProps } from 'next';
+import { socialType } from '@/types/socialType';
+import { fetchSocials } from './api/fetchSocials';
 
 type propsType = {
   profile: profileType;
   projects: projectType[];
   experiences: experienceType[];
   skills: skillType[];
+  socials: socialType[];
 }
 
-export default function Home({ profile, projects, experiences, skills }: propsType) {
-  if (!(profile && projects && experiences && skills)) return <div>Chargement</div>;
+export default function Home({ profile, projects, experiences, skills, socials }: propsType) {
 
   return (
     <>
@@ -36,7 +39,11 @@ export default function Home({ profile, projects, experiences, skills }: propsTy
       </Head>
       <main className={styles.main}>
         <section id="me" className={styles.section}>
-          <Me profile={profile} />
+          <Me
+            picture={profile.picture}
+            pictureGit={profile.pictureGit}
+            socials={socials}
+          />
         </section>
         <section id="projects" className={styles.section}>
           <Projects projects={projects} />
@@ -55,24 +62,28 @@ export default function Home({ profile, projects, experiences, skills }: propsTy
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<propsType> = async () => {
+  console.log("CALL staticProps");
   // Don't use of await to parallelize fetches
   const profilePromise: Promise<profileType> = fetchProfile()
   const projectsPromise: Promise<projectType[]> = fetchProjects();
   const experiencesPromise: Promise<experienceType[]> = fetchExperiences();
   const skillsPromise: Promise<skillType[]> = fetchSkills();
+  const socialsPromise: Promise<socialType[]> = fetchSocials();
 
-  let profile: profileType
-  let projects: projectType[]
-  let experiences: experienceType[]
-  let skills: skillType[]
+  let profile: profileType;
+  let projects: projectType[];
+  let experiences: experienceType[];
+  let skills: skillType[];
+  let socials: socialType[];
 
   [
     profile,
     projects,
     experiences,
-    skills
-  ] = await Promise.all([profilePromise, projectsPromise, experiencesPromise, skillsPromise]);
+    skills,
+    socials
+  ] = await Promise.all([profilePromise, projectsPromise, experiencesPromise, skillsPromise, socialsPromise]);
 
   return {
     props: {
@@ -80,6 +91,8 @@ export async function getStaticProps() {
       projects,
       experiences,
       skills,
-    }
+      socials,
+    },
+    revalidate: 10,
   }
 }
