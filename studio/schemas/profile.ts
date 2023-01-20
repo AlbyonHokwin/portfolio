@@ -12,11 +12,5 @@ export default defineType({
         defineField({ name: 'phone', type: 'string', title: 'Numéro de téléphone' }),
         defineField({ name: 'picture', type: 'accessibleImage', title: 'Image de profil' }),
         defineField({ name: 'pictureGit', type: 'accessibleImage', title: 'Image de profil sur github' }),
-        defineField({
-            name: 'socials',
-            title: 'Réseaux sociaux',
-            type: 'array',
-            of: [defineArrayMember({ type: 'reference', to: [{ type: 'social' }] })]
-        })
     ]
 })
