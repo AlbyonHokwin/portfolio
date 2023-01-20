@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Me from '@/components/Me';
+import Projects from '@/components/Projects';
 import styles from '@/styles/Home.module.css'
 
 import { fetchProfile } from './api/fetchProfile';
@@ -31,6 +32,9 @@ export default function Home({ profile, projects, experiences, skills }: propsTy
       <main className={styles.main}>
         <section id="me">
           <Me profile={profile} />
+        </section>
+        <section id="me">
+          <Projects projects={projects} />
         </section>
       </main>
     </>
