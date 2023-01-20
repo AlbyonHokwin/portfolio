@@ -22,7 +22,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
     const flipCard = () => {
         setPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 0 });
         setGitPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 1 });
-        setTimeout(() => setIsFlip(true), 500);
+        setTimeout(() => setIsFlip(true), 700);
     }
 
     const deflipCard = () => {
@@ -34,34 +34,36 @@ function Me({ picture, pictureGit, socials }: propsType) {
     return (
         <div className={styles.container}>
             <div className={styles.flipContainer}
+                onTouchStart={flipCard}
+                onTouchEnd={deflipCard}
                 onMouseEnter={flipCard}
                 onMouseLeave={deflipCard}
             >
                 <div className={`${styles.picture} ${styles.flipContainer}`} style={pictureStyle}>
                     <Image
-                        style={{ objectFit: "cover", borderRadius: "50%" }}
+                        style={{ objectFit: "cover" }}
                         src={picture.url}
                         alt={picture.alt}
                         fill={true}
-                        sizes="30vw"
+                        sizes="(max-width: 425px) 300px,50vmin"
                     />
                 </div>
-                {github && <a href={github.url} className={`${styles.git} ${styles.flipContainer}`} style={gitPictureStyle}>
-                    {isFlip && <Image
+                {isFlip && <div className={styles.overlayImage}>
+                    <Image
                         style={{ borderRadius: "50%" }}
-                        className={styles.overlayImage}
                         src={github.image.url}
                         alt={github.image.alt}
                         width={80}
                         height={80}
-                    />}
+                    />
+                </div>}
+                {github && <a href={github.url} className={`${styles.git} ${styles.flipContainer}`} style={gitPictureStyle}>
                     <Image
-                        style={{ objectFit: "cover", borderRadius: "50%" }}
+                        style={{ objectFit: "cover" }}
                         src={pictureGit.url}
                         alt={pictureGit.alt}
                         fill={true}
-                        sizes="30vw"
-                        onTransitionEnd={() => console.log('end')}
+                        sizes="50vmin"
                     />
                 </a>}
             </div>

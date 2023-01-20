@@ -10,27 +10,45 @@
 
 .flipContainer {
   position: absolute;
-  width: 20vw;
-  height: 20vw;
+  width: max(40vmin, 315px);
+  height: max(40vmin, 315px);
   border-radius: 50%;
+}
+
+@media (max-width: 350px) {
+  .flipContainer {
+    width: max(90vmin, 150px);
+    height: max(90vmin, 150px);
+    }
+}
+
+@media (max-height: 350px) {
+  .flipContainer {
+    width: max(90vmin, 150px);
+    height: max(90vmin, 150px);
+    }
 }
 
 .picture {
   opacity: 1;
-  transition: 1s;
+  transition: transform 1s, opacity 1s;
+  overflow: hidden;
 }
 
 .git {
   opacity: 0;
-  transition: 1s;
+  transition: transform 1s, opacity 1s;
+  overflow: hidden;
 }
 
 .overlayImage {
   position: absolute;
-  bottom: -10px;
-  left: -10px;
-  padding: 2px 3px 3px 3px;
-  border: 10px solid rgb(var(--background-rgb));
+  bottom: 0px;
+  right: 0px;
+  opacity: 1;
+  padding: 3px 3px 1px 3px;
+  border-radius: 50%;
+  border: 1em solid rgb(var(--background-rgb));
   background-color: white;
   animation: appear ease-in 1s;
   z-index: 1000;
@@ -40,6 +58,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
