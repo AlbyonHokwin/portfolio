@@ -8,7 +8,7 @@ type propsType = {
 
 function Me({ profile }: propsType) {
     return (
-        <div id="container">
+        <div className={styles.container}>
             {profile.lastname}
         </div>
     )
