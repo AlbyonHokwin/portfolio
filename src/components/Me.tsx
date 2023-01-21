@@ -45,27 +45,27 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         src={picture.url}
                         alt={picture.alt}
                         fill={true}
-                        sizes="(max-width: 425px) 300px,50vmin"
+                        sizes="(max-width: 350px) 300px, 50vmin"
                     />
                 </div>
-                {isFlip && <div className={styles.overlayImage}>
-                    <Image
-                        style={{ borderRadius: "50%" }}
-                        src={github.image.url}
-                        alt={github.image.alt}
-                        width={80}
-                        height={80}
-                    />
-                </div>}
                 {github && <a href={github.url} className={`${styles.git} ${styles.flipContainer}`} style={gitPictureStyle}>
                     <Image
                         style={{ objectFit: "cover" }}
                         src={pictureGit.url}
                         alt={pictureGit.alt}
                         fill={true}
-                        sizes="50vmin"
+                        sizes="(max-width: 350px) 300px, 50vmin"
                     />
                 </a>}
+                {github && isFlip && <div className={styles.overlayImage}>
+                    <Image
+                        style={{ objectFit: "cover", padding: "2px 3px 4px 3px" }}
+                        src={github.image.url}
+                        alt={github.image.alt}
+                        fill={true}
+                        sizes="80px"
+                    />
+                </div>}
             </div>
         </div>
     )

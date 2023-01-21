@@ -45,14 +45,18 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
+  width: min(80px, 30vmin);
+  height: min(80px, 30vmin);
+  overflow: hidden;
   opacity: 1;
-  padding: 3px 3px 1px 3px;
-  border-radius: 50%;
-  border: 1em solid rgb(var(--background-rgb));
   background-color: white;
-  animation: appear ease-in 1s;
+  border-radius: 50%;
+  border: min(10px, 5vmin) solid rgb(var(--background-rgb));
+  animation: appear ease-in 0.7s;
   z-index: 1000;
 }
+
+
 
 @keyframes appear {
   from {
