@@ -1,23 +1,24 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head'
+import styles from '@/styles/Home.module.css'
+
 import Me from '@/components/Me';
 import Projects from '@/components/Projects';
 import Experiences from '@/components/Experiences';
 import Skills from '@/components/Skills';
 import ContactMe from '@/components/ContactMe';
-import styles from '@/styles/Home.module.css'
 
 import { fetchProfile } from './api/fetchProfile';
 import { fetchProjects } from './api/fetchProjects';
 import { fetchExperiences } from './api/fetchExperiences';
 import { fetchSkills } from './api/fetchSkills';
+import { fetchSocials } from './api/fetchSocials';
 
 import type { profileType } from '@/types/profileType';
 import type { projectType } from '@/types/projectType';
 import type { experienceType } from '@/types/experienceType';
 import type { skillType } from '@/types/skillType';
-import { GetStaticProps } from 'next';
-import { socialType } from '@/types/socialType';
-import { fetchSocials } from './api/fetchSocials';
+import type { socialType } from '@/types/socialType';
 
 type propsType = {
   profile: profileType;
@@ -32,7 +33,7 @@ export default function Home({ profile, projects, experiences, skills, socials }
   return (
     <>
       <Head>
-        <title>Camille HAUSTANT - Portfolio</title>
+        <title>{profile.firstname} {profile.lastname} - Portfolio</title>
         <meta name="description" content="Portfolio de Camille HAUSTANT. Vous trouverez ici mes expériences et mes projets." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.ico" />
@@ -63,7 +64,6 @@ export default function Home({ profile, projects, experiences, skills, socials }
 }
 
 export const getStaticProps: GetStaticProps<propsType> = async () => {
-  console.log("CALL staticProps");
   // Don't use of await to parallelize fetches
   const profilePromise: Promise<profileType> = fetchProfile()
   const projectsPromise: Promise<projectType[]> = fetchProjects();
