@@ -9,21 +9,24 @@
   --secondary: #0C355B;
   --tertiary: #247BA0;
   --accent: #E3B23C;
+  --font-color: #fff;
 
   --primary-glow: conic-gradient(from 0deg at -10% 0%,
       var(--primary) 0deg,
-      var(--secondary) 90deg,
+      var(--primary) 90deg,
+      var(--secondary) 135deg,
       var(--tertiary) 180deg,
-      var(--secondary) 270deg,
+      var(--secondary) 225deg,
+      var(--primary) 270deg,
       var(--primary) 360deg);
   --secondary-glow: radial-gradient(rgba(255, 255, 255, 1),
       rgba(255, 255, 255, 0));
 
-  --background: #ddd;
-  --foreground: #000;
+  --background: var(--primary);
+  --foreground: #fff;
   --box-shadow: #000;
-  --scrollbar-background: var(--background);
-  --scrollbar-thumb: var(--accent);
+  --scrollbar-background: var(--secondary);
+  --scrollbar-thumb: var(--tertiary);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -74,7 +77,7 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  color: var(--font-color);
   background: var(--background)
 }
 
