@@ -1,5 +1,6 @@
 import type { imageType } from "./imageType";
 import type { skillType } from "./skillType";
+import type { PortableTextBlock } from "@portabletext/types";
 
 type githubLink = {
     name: string;
@@ -8,7 +9,7 @@ type githubLink = {
 
 export type projectType = {
     projectTitle: string;
-    description: string;
+    description: PortableTextBlock[];
     date: string | date;
     onProgress: boolean;
     mainImage: imageType;
