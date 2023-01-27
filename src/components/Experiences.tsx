@@ -1,5 +1,7 @@
-import React from 'react'
-import styles from '@/styles/Experiences.module.css'
+import React from 'react';
+import styles from '@/styles/Experiences.module.css';
+import Experience from './modules/Experience';
+
 import type { experienceType } from '@/types/experienceType';
 
 type propsType = {
