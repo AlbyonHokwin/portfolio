@@ -13,6 +13,14 @@
   width: max(40vmin, 315px);
   height: max(40vmin, 315px);
   border-radius: 50%;
+  box-shadow: 0 0 20px var(--box-shadow);
+}
+
+.flipCard {
+  position: absolute;
+  width: max(40vmin, 315px);
+  height: max(40vmin, 315px);
+  border-radius: 50%;
 }
 
 @media (max-width: 350px) {
@@ -31,28 +39,28 @@
 
 .picture {
   opacity: 1;
-  transition: transform 1s, opacity 1s;
+  transition: transform 0.5s, opacity 0.5s;
   overflow: hidden;
 }
 
 .git {
   opacity: 0;
-  transition: transform 1s, opacity 1s;
+  transition: transform 0.5s, opacity 0.5s;
   overflow: hidden;
 }
 
 .overlayImage {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 5px;
+  right: 5px;
   width: min(80px, 30vmin);
   height: min(80px, 30vmin);
   overflow: hidden;
   opacity: 1;
-  background-color: white;
+  background-color: var(--background);
   border-radius: 50%;
-  border: min(10px, 5vmin) solid rgb(var(--background-rgb));
-  animation: appear ease-in 0.7s;
+  border: min(10px, 5vmin) solid var(--background);
+  animation: appear ease-in 0.5s;
   z-index: 1000;
 }
 

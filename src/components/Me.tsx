@@ -22,7 +22,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
     const flipCard = () => {
         setPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 0 });
         setGitPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 1 });
-        setTimeout(() => setIsFlip(true), 700);
+        setTimeout(() => setIsFlip(true), 500);
     }
 
     const deflipCard = () => {
@@ -39,7 +39,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                 onMouseEnter={flipCard}
                 onMouseLeave={deflipCard}
             >
-                <div className={`${styles.picture} ${styles.flipContainer}`} style={pictureStyle}>
+                <div className={`${styles.picture} ${styles.flipCard}`} style={pictureStyle}>
                     <Image
                         style={{ objectFit: "cover" }}
                         src={picture.url}
@@ -48,7 +48,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         sizes="(max-width: 350px) 300px, 50vmin"
                     />
                 </div>
-                {github && <a href={github.url} className={`${styles.git} ${styles.flipContainer}`} style={gitPictureStyle}>
+                {github && <a href={github.url} className={`${styles.git} ${styles.flipCard}`} style={gitPictureStyle}>
                     <Image
                         style={{ objectFit: "cover" }}
                         src={pictureGit.url}
@@ -59,7 +59,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                 </a>}
                 {github && isFlip && <div className={styles.overlayImage}>
                     <Image
-                        style={{ objectFit: "cover", padding: "2px 3px 4px 3px" }}
+                        style={{ objectFit: "cover", /* padding: "2px 3px 4px 3px" */ }}
                         src={github.image.url}
                         alt={github.image.alt}
                         fill={true}
