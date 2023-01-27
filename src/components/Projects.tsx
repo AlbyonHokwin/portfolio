@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '@/styles/Projects.module.css'
 import type { projectType } from '@/types/projectType';
 
-import Project from './elements/Project';
+import Project from './modules/Project';
 
 type propsType = {
     projects: projectType[];
@@ -11,9 +11,15 @@ type propsType = {
 function Projects({ projects }: propsType) {
     return (
         <div className={styles.container}>
-            {projects.map((project, i) => {
-                return <Project key={i} project={project} />
-            })}
+            <h2 className={styles.title}>Projets</h2>
+            <div className={styles.projects}>
+                {projects.map((project, i) => {
+                    return (
+                        <section key={i} className={styles.section}>
+                            <Project project={project} />
+                        </section>)
+                })}
+            </div>
         </div>
     )
 }
