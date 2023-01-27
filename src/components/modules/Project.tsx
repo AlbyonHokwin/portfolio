@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '@/styles/Project.module.css'
 import Image from 'next/image';
+import Skill from '@/components/elements/Skill';
 import { PortableText } from '@portabletext/react'
 
 import type { projectType } from '@/types/projectType';
@@ -56,18 +57,7 @@ function Project({ project }: propsType) {
             </div>
             <div className={styles.skills}>
                 {skills.map((skill, i) => {
-                    return (
-                        <div key={i} className={styles.skill}>
-                            <Image
-                                style={{ objectFit: "contain" }}
-                                src={skill.image.url}
-                                alt={skill.image.alt}
-                                width={40}
-                                height={40}
-                            />
-                            <div className={styles.skillName}>{skill.skill}</div>
-                        </div>
-                    );
+                    return (<Skill key={i} skill={skill} />);
                 })}
             </div>
 
