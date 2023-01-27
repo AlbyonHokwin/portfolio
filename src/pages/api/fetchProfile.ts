@@ -6,16 +6,19 @@ import type { socialType } from "@/types/socialType";
 const fetchProfile = async () => {
     const fetchedProfile: profileType = await client.fetch(`*[_type == "profile"]{
         firstname, lastname, email, description,
-        picture{alt, caption, "url": asset->url},
-        pictureGit{alt, caption, "url": asset->url},
-        // socials[]->{
-        //     name,
-        //     url,
-        //     image{alt, caption, "url": asset->url}    
-        // }
+        picture { alt, caption,
+            "url": asset->url,
+            "aspect": asset->metadata.dimensions.aspectRatio,
+            "width": asset->metadata.dimensions.width,
+            "height": asset->metadata.dimensions.height,
+        },
+        pictureGit { alt, caption,
+            "url": asset->url,
+            "aspect": asset->metadata.dimensions.aspectRatio,
+            "width": asset->metadata.dimensions.width,
+            "height": asset->metadata.dimensions.height,
+        },
     }[0]`);
-
-    // console.log(fetchedProfile);
 
     return {
         ...fetchedProfile,
@@ -27,13 +30,6 @@ const fetchProfile = async () => {
             ...fetchedProfile.pictureGit,
             caption: fetchedProfile.pictureGit.caption || '',
         },
-        // socials: fetchedProfile.socials.map((social: socialType) => ({
-        //     ...social,
-        //     image: {
-        //         ...social.image,
-        //         caption: social.image.caption || '',
-        //     }
-        // }))
     }
 };
 

@@ -6,7 +6,12 @@ import type { skillType } from "@/types/skillType";
 const fetchExperiences = async () => {
     const fetchedExperiences: experienceType[] = await client.fetch(`*[_type == "experience"]{
         jobTitle, company, description, location, industry, startDate, endDate,
-        logo{alt, caption, "url": asset->url},
+        logo { alt, caption,
+            "url": asset->url,
+            "aspect": asset->metadata.dimensions.aspectRatio,
+            "width": asset->metadata.dimensions.width,
+            "height": asset->metadata.dimensions.height,
+        },
         skills[]->{
             skill,
             image{alt, caption, "url": asset->url}    

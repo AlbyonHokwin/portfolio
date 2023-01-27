@@ -6,8 +6,18 @@ import type { skillType } from "@/types/skillType";
 const fetchProjects = async () => {
     const fetchedProjects: projectType[] = await client.fetch(`*[_type == "project"]{
         projectTitle, description, date, onProgress, video,
-        mainImage { alt, caption, "url": asset->url },
-        images[]{ alt, caption, "url": asset->url },
+        mainImage { alt, caption,
+            "url": asset->url,
+            "aspect": asset->metadata.dimensions.aspectRatio,
+            "width": asset->metadata.dimensions.width,
+            "height": asset->metadata.dimensions.height,
+        },
+        images[] { alt, caption,
+            "url": asset->url,
+            "aspect": asset->metadata.dimensions.aspectRatio,
+            "width": asset->metadata.dimensions.width,
+            "height": asset->metadata.dimensions.height,
+        },
         githubLinks[]{ name, url },
         skills[] -> { skill, image{alt, caption, "url": asset->url} },
     }`);
