@@ -22,6 +22,8 @@
   --background: #ddd;
   --foreground: #000;
   --box-shadow: #000;
+  --scrollbar-background: var(--background);
+  --scrollbar-thumb: var(--accent);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -69,7 +71,6 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
