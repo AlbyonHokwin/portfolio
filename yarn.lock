@@ -158,6 +158,26 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
+"@portabletext/react@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-2.0.1.tgz#0505ea15e2b19645b498e01a25212dd38fc3ee38"
+  integrity sha512-8uWtQKVkWBqxOuuXe7mULB15u7qVT1/Ys59SDSslrM1aXUhzzWQT68eDkdPd8+upbBvplFygAhZKkNCLDejYfQ==
+  dependencies:
+    "@portabletext/toolkit" "^2.0.0"
+    "@portabletext/types" "^2.0.0"
+
+"@portabletext/toolkit@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@portabletext/toolkit/-/toolkit-2.0.0.tgz#b6675bc4a90c4b0ec92cb66687d149034b38e4b6"
+  integrity sha512-2Ljk7dnofxqam9u4B0h1UmpU18h+6SerSU/UanEHQW/IfjmOi48qZDre6MsOrQJ9/LsmlA8MDrmlCND5r/tg3A==
+  dependencies:
+    "@portabletext/types" "^2.0.0"
+
+"@portabletext/types@^2.0.0":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@portabletext/types/-/types-2.0.1.tgz#d3cae84005106873d15ed22309005d1496a8e450"
+  integrity sha512-y2kXVZ7A3MkVO0Y1EGW25qKw6Wh51bEjDnkt4c1deVTp9uMUE1PzLs90zvYNZvXgvMSYYxDC8LgjTnA0k6728A==
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
