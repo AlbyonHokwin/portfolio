@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 
 import Me from '@/components/Me';
@@ -32,12 +31,6 @@ export default function Home({ profile, projects, experiences, skills, socials }
 
   return (
     <>
-      <Head>
-        <title>{profile.firstname} {profile.lastname} - Portfolio</title>
-        <meta name="description" content="Portfolio de Camille HAUSTANT. Vous trouverez ici mes expériences et mes projets." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/icon.ico" />
-      </Head>
       <main className={styles.main}>
         <section id="me" className={styles.section}>
           <Me
