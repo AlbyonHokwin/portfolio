@@ -6,7 +6,12 @@ export default defineType({
     title: 'Projet',
     fields: [
         defineField({ name: 'projectTitle', type: 'string', title: 'Nom du projet' }),
-        defineField({ name: 'description', type: 'text', title: 'Descriptif' }),
+        defineField({
+            name: 'description',
+            title: 'Descriptif',
+            type: 'array',
+            of: [defineArrayMember({ type: 'block' })]
+        }),
         defineField({ name: 'onProgress', type: 'boolean', title: 'En cours', initialValue: false }),
         defineField({ name: 'date', type: 'date', title: 'Date du projet' }),
         defineField({ name: 'mainImage', type: 'accessibleImage', title: 'Image principale' }),
