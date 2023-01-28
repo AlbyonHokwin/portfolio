@@ -4,7 +4,7 @@ import type { experienceType } from "@/types/experienceType";
 import type { skillType } from "@/types/skillType";
 
 const fetchExperiences = async () => {
-    const fetchedExperiences: experienceType[] = await client.fetch(`*[_type == "experience"]{
+    const fetchedExperiences: experienceType[] = await client.fetch(`*[_type == "experience"] | order(startDate desc){
         jobTitle, company, description, location, industry, startDate, endDate,
         logo { alt, caption,
             "url": asset->url,
