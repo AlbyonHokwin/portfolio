@@ -52,9 +52,9 @@ function Experience({ experience }: propsType) {
                 })}
             </div>
 
-            {/* <div className={styles.description}>
+            <div className={styles.description}>
                 <PortableText value={description} />
-            </div> */}
+            </div>
 
         </div>
     )
