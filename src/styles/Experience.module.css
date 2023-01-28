@@ -1,0 +1,95 @@
+.container {
+    width: max(80%, 700px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: auto;
+    scrollbar-color: var(--scrollbar-background);
+  }
+  
+  .container::-webkit-scrollbar {
+    height: 16px;
+    border-radius: 1000px;
+    background: var(--scrollbar-background);
+  }
+  
+  .container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 1000px;
+  }
+  
+.imageContainer {
+    position: relative;
+    height: 20%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.image {
+    background-color: var(--foreground);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 5px 10px var(--box-shadow);
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    font-size: max(20px, 3vmin);
+    text-align: center;
+}
+
+.company {
+    font-size: max(20px, 3vmin);
+    text-align: center;
+    color: var(--tertiary);
+}
+
+.dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: max(14px, 2vmin);
+}
+
+.skills {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.description {
+    width: min(max(60%, 400px), 80%);
+    font-size: 16px;
+    text-align: justify;
+    color: var(--foreground);
+}
+
+.description p {
+    margin-top: 1rem;
+}
+
+.description li {
+    margin-left: 1rem;
+}

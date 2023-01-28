@@ -11,7 +11,15 @@ type propsType = {
 function Experiences({ experiences }: propsType) {
     return (
         <div className={styles.container}>
-            {experiences[0].jobTitle}
+            <h2 className={styles.title}>Expériences</h2>
+            <div className={styles.experiences}>
+                {experiences.map((experience, i) => {
+                    return (
+                        <section key={i} className={styles.section}>
+                            <Experience experience={experience} />
+                        </section>)
+                })}
+            </div>
         </div>
     )
 }

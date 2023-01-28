@@ -1,9 +1,47 @@
 .container {
-    background-color: yellow;
+    --space: 30px;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    gap: 20px;
+  }
+  
+  .title {
+    font-size: max(25px, 5vmin);
+    margin-top: 2vh;
+  }
+  
+  .experiences {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: auto;
+    scrollbar-color: var(--scrollbar-background);
+  }
+  
+  .experiences::-webkit-scrollbar {
+    height: 16px;
+    border-radius: 1000px;
+    background: var(--scrollbar-background);
+  }
+  
+  .experiences::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 1000px;
+  }
+  
+  .section {
+    scroll-snap-align: center;
+    min-width: 100%;
+    max-width: 100%;
+    padding: var(--space);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
