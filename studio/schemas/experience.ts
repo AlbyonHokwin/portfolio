@@ -12,7 +12,12 @@ export default defineType({
         defineField({ name: 'startDate', type: 'date', title: 'Date de début' }),
         defineField({ name: 'endDate', type: 'date', title: 'Date de fin' }),
         defineField({ name: 'industry', type: 'string', title: 'Secteur' }),
-        defineField({ name: 'description', type: 'text', title: 'Descriptif' }),
+        defineField({
+            name: 'description',
+            title: 'Descriptif',
+            type: 'array',
+            of: [defineArrayMember({ type: 'block' })]
+        }),
         defineField({
             name: 'skills',
             title: 'Compétences',
