@@ -1,9 +1,7 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: 'Ubuntu', sans-serif;
 
   --primary: #011127;
   --secondary: #0C355B;
@@ -22,7 +20,7 @@
   --secondary-glow: radial-gradient(rgba(255, 255, 255, 1),
       rgba(255, 255, 255, 0));
 
-  --background: var(--primary);
+  --background: var(--primary-glow);
   --foreground: #fff;
   --box-shadow: #000;
   --scrollbar-background: var(--secondary);
@@ -78,7 +76,24 @@ body {
 
 body {
   color: var(--font-color);
-  background: var(--background)
+  background-image: var(--background);
+  background-size: 150%;
+  font-family: var(--font-mono);
+  animation: AnimateBG 10s ease infinite;
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 0%
+  }
+
+  50% {
+    background-position: 100% 100%
+  }
+
+  100% {
+    background-position: 0% 0%
+  }
 }
 
 a {
