@@ -23,6 +23,9 @@ function Project({ project }: propsType) {
         skills,
     } = project;
 
+    let dateStr: string = '';
+    !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
+
     return (
         <div className={styles.container}>
             <div className={styles.images}>
@@ -53,7 +56,7 @@ function Project({ project }: propsType) {
             </div>
             <div className={styles.titleContainer}>
                 <h3 className={styles.title}>{projectTitle}</h3>
-                {!onProgress && <time className={styles.date}>({date})</time>}
+                {!onProgress && <time className={styles.date}>(Fini en {dateStr})</time>}
             </div>
             <div className={styles.skills}>
                 {skills.map((skill, i) => {

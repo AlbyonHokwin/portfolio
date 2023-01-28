@@ -23,6 +23,9 @@ function Experience({ experience }: propsType) {
         skills,
     } = experience;
 
+    const startDateStr: string = Intl.DateTimeFormat(undefined, {month: 'long', year: 'numeric'}).format(new Date(startDate));
+    const endDateStr: string = Intl.DateTimeFormat(undefined, {month: 'long', year: 'numeric'}).format(new Date(endDate));
+
     return (
         <div className={styles.container}>
             <div className={styles.imageContainer}>
@@ -40,9 +43,9 @@ function Experience({ experience }: propsType) {
                 <h3 className={styles.company}>{company}</h3>
                 <div className={styles.dates}>
                     <p>
-                        <time className={styles.date}>{startDate.replace(/-/g, '/')}</time>
+                        <time className={styles.date}>{startDateStr}</time>
                         <span> à </span>
-                        <time className={styles.date}>{endDate.replace(/-/g, '/')}</time>
+                        <time className={styles.date}>{endDateStr}</time>
                     </p>
                 </div>
             </div>
