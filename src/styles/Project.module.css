@@ -1,5 +1,33 @@
 .container {
-    width: max(80%, 700px);
+    width: min(100%, 700px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2vh;
+}
+
+.title {
+    font-size: max(20px, 3vmin);
+    text-align: center;
+}
+
+.date {
+    font-size: max(14px, 2vmin);
+}
+
+.content {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -10,7 +38,7 @@
     scrollbar-width: none;
 }
 
-.container::-webkit-scrollbar {
+.content::-webkit-scrollbar {
     display: none;
 }
 
@@ -74,24 +102,6 @@
     border-radius: 10px;
     width: auto;
     height: 100%;
-}
-
-.titleContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.title {
-    font-size: max(20px, 3vmin);
-    text-align: center;
-}
-
-.date {
-    font-size: max(14px, 2vmin);
 }
 
 .skills {
