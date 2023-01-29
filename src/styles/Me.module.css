@@ -16,25 +16,18 @@
   box-shadow: 0 0 20px var(--box-shadow);
 }
 
+@media (max-width: 350px) or (max-height: 350px) {
+  .flipContainer {
+    width: max(90vmin, 150px);
+    height: max(90vmin, 150px);
+  }
+}
+
 .flipCard {
   position: absolute;
-  width: max(40vmin, 315px);
-  height: max(40vmin, 315px);
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
-}
-
-@media (max-width: 350px) {
-  .flipContainer {
-    width: max(90vmin, 150px);
-    height: max(90vmin, 150px);
-    }
-}
-
-@media (max-height: 350px) {
-  .flipContainer {
-    width: max(90vmin, 150px);
-    height: max(90vmin, 150px);
-    }
 }
 
 .picture {

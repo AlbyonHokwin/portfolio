@@ -5,25 +5,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  padding-bottom: 30px;
 }
 
 .title {
   font-size: max(25px, 5vmin);
   margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .skillsContainer {
+  width: 80%;
   flex-grow: 1;
-  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.skillsContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .skills {
   width: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;

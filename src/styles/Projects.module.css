@@ -6,12 +6,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 }
 
 .title {
   font-size: max(25px, 5vmin);
   margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .projects {
@@ -41,6 +41,7 @@
   min-width: 100%;
   max-width: 100%;
   padding: var(--space);
+  padding-top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
