@@ -1,9 +1,5 @@
 .skill {
     position: relative;
-    height: 60px;
-    flex-basis: 60px;
-    flex-grow: 0;
-    flex-shrink: 0;
     background-color: var(--foreground);
     display: flex;
     justify-content: center;
