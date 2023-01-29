@@ -50,9 +50,9 @@
   height: min(80px, 30vmin);
   overflow: hidden;
   opacity: 1;
-  background-color: var(--background);
+  background-color: var(--accent);
   border-radius: 50%;
-  border: min(10px, 5vmin) solid var(--background);
+  border: min(10px, 5vmin) solid var(--accent);
   animation: appear ease-in 0.5s;
   z-index: 1000;
 }
