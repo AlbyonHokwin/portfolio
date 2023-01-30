@@ -25,7 +25,7 @@ function Skills({ skills }: propsType) {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Compétences</h2>
+            <h2>Compétences</h2>
             <div className={styles.skillsContainer} ref={skillsContainerRef}>
                 <div className={styles.skills}>
                     {skills.map((skill, i) => {

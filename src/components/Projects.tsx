@@ -11,7 +11,7 @@ type propsType = {
 function Projects({ projects }: propsType) {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Projets</h2>
+            <h2>Projets</h2>
             <div className={styles.projects}>
                 {projects.map((project, i) => {
                     return (

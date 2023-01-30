@@ -22,7 +22,7 @@ function ContactMe() {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Me contacter</h2>
+            <h2>Me contacter</h2>
             <div className={styles.formContainer}>
                 <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 

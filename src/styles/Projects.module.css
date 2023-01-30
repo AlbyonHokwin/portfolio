@@ -8,12 +8,6 @@
   align-items: center;
 }
 
-.title {
-  font-size: max(25px, 5vmin);
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-}
-
 .projects {
   width: 100%;
   flex-grow: 1;

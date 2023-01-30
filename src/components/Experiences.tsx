@@ -11,7 +11,7 @@ type propsType = {
 function Experiences({ experiences }: propsType) {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Expériences</h2>
+            <h2>Expériences</h2>
             <div className={styles.experiences}>
                 {experiences.map((experience, i) => {
                     return (
