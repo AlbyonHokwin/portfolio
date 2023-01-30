@@ -15,9 +15,7 @@
   
 .imageContainer {
     position: relative;
-    min-height: 50px;
-    height: 20%;
-    width: 50%;
+    width: max(30%, 100px);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -29,7 +27,7 @@
     padding: 10px;
     border-radius: 10px;
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .titleContainer {
