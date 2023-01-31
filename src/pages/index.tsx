@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next';
 import styles from '@/styles/Home.module.css'
 
 import Head from 'next/head';
+import Navbar from '@/components/Navbar';
 import Me from '@/components/Me';
 import Projects from '@/components/Projects';
 import Experiences from '@/components/Experiences';
@@ -38,27 +39,32 @@ export default function Home({ profile, projects, experiences, skills, socials }
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.ico" />
       </Head>
-      <main className={styles.main}>
-        <section id="me" className={styles.section}>
-          <Me
-            picture={profile.picture}
-            pictureGit={profile.pictureGit}
-            socials={socials}
-          />
-        </section>
-        <section id="projects" className={styles.section}>
-          <Projects projects={projects} />
-        </section>
-        <section id="experiences" className={styles.section}>
-          <Experiences experiences={experiences} />
-        </section>
-        <section id="skills" className={styles.section}>
-          <Skills skills={skills} />
-        </section>
-        <section id="contact-me" className={styles.section}>
-          <ContactMe myEmail={profile.email} />
-        </section>
-      </main>
+      <div className={styles.container}>
+        <div className={styles.navbarContainer}>
+          <Navbar />
+        </div>
+        <main className={styles.main}>
+          <section id="me" className={styles.section}>
+            <Me
+              picture={profile.picture}
+              pictureGit={profile.pictureGit}
+              socials={socials}
+            />
+          </section>
+          <section id="projects" className={styles.section}>
+            <Projects projects={projects} />
+          </section>
+          <section id="experiences" className={styles.section}>
+            <Experiences experiences={experiences} />
+          </section>
+          <section id="skills" className={styles.section}>
+            <Skills skills={skills} />
+          </section>
+          <section id="contact-me" className={styles.section}>
+            <ContactMe myEmail={profile.email} />
+          </section>
+        </main>
+      </div>
     </>
   )
 }
