@@ -15,7 +15,6 @@ function Skills({ skills }: propsType) {
 
     useEffect(() => {
         if (skillsContainerRef.current) {
-            console.log(skillsContainerRef.current.clientWidth);
             let calculatedSize = Math.min(Math.floor(0.85 * skillsContainerRef.current.clientWidth / numOfSkillOnRow), 100);
             setSize(calculatedSize);
         }
