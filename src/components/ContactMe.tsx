@@ -10,13 +10,17 @@ type Inputs = {
     email: string;
     subject: string;
     message: string;
-}
+};
+
+type propsType = {
+    myEmail: string;
+};
 
 const EMAIL_REGEX: RegExp = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i;
 const errorIcon = <FontAwesomeIcon icon={faCircleExclamation} className={styles.errorIcon} />
 const spinnerIcon = <FontAwesomeIcon icon={faSpinner} spinPulse />
 
-function ContactMe() {
+function ContactMe({ myEmail }: propsType) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { register, handleSubmit, reset, formState, formState: { errors, isSubmitSuccessful } } = useForm<Inputs>({
         defaultValues: {
@@ -29,7 +33,8 @@ function ContactMe() {
 
     const onSubmit: SubmitHandler<Inputs> = data => {
         setIsLoading(true);
-        emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, data, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+        const params = { myEmail, ...data };
+        emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, params, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
             .then(result => {
                 if (result.text === 'OK') {
                     alert("Votre message a bien été envoyé.");
