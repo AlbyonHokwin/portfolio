@@ -22,7 +22,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
     const flipCard = () => {
         setPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 0 });
         setGitPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 1 });
-        setTimeout(() => setIsFlip(true), 500);
+        setIsFlip(true);
     }
 
     const deflipCard = () => {
@@ -38,6 +38,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                 onTouchEnd={deflipCard}
                 onMouseEnter={flipCard}
                 onMouseLeave={deflipCard}
+                onMouseOut={deflipCard}
             >
                 <div className={`${styles.picture} ${styles.flipCard}`} style={pictureStyle}>
                     <Image

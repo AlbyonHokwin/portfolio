@@ -53,18 +53,22 @@
   background-color: var(--accent);
   border-radius: 50%;
   border: min(10px, 5vmin) solid var(--accent);
-  animation: appear ease-in 0.5s;
+  animation: appear 1s ease-in;
   z-index: 1000;
 }
 
 
 
 @keyframes appear {
-  from {
+  0% {
     opacity: 0;
   }
 
-  to {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
     opacity: 1;
   }
 }
