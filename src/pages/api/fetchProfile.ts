@@ -1,7 +1,6 @@
 import { sanityClient as client } from "./sanityClient";
 
 import type { profileType } from "@/types/profileType";
-import type { socialType } from "@/types/socialType";
 
 const fetchProfile = async () => {
     const fetchedProfile: profileType = await client.fetch(`*[_type == "profile"]{
