@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser';
 import styles from '@/styles/ContactMe.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -17,8 +18,27 @@ const spinnerIcon = <FontAwesomeIcon icon={faSpinner} spinPulse />
 
 function ContactMe() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log('data', data);
+    const { register, handleSubmit, reset, formState, formState: { errors, isSubmitSuccessful } } = useForm<Inputs>({
+        defaultValues: {
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+        }
+    });
+
+    const onSubmit: SubmitHandler<Inputs> = data => {
+        setIsLoading(true);
+        emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, data, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+            .then(result => {
+                if (result.text === 'OK') {
+                    alert("Votre message a bien été envoyé.");
+                    reset();
+                    setIsLoading(false);
+                }
+            })
+            .catch(() => alert("Une erreur s'est produite durant l'envoi, veuillez réessayer."));
+    };
 
     return (
         <div className={styles.container}>
