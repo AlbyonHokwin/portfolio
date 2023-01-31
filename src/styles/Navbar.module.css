@@ -1,0 +1,89 @@
+.container {
+    height: 100%;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+}
+
+.homeIcon,
+.menuIcon {
+    color: var(--font-color-light);
+    height: 20px;
+    width: 20px;
+}
+
+.menuIcon {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    height: 0;
+    opacity: 0;
+    translate: -600px;
+    transition: all 0.5s;
+}
+
+.menuSection ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    gap: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+@media screen and (max-width: 680px) {
+    .menuSection ul {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .menuIcon {
+        height: auto;
+        opacity: 1;
+        translate: 0;
+    }
+
+    .menuSection ul {
+        background-color: var(--secondary);
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 0;
+        position: absolute;
+        right: 0;
+        top: 40px;
+        border-radius: 20px;
+        transition: all 0.2s ease-out 0.2s;
+    }
+
+    .menuSection ul li {
+        opacity: 0;
+        translate: 200px;
+        transition: all 0.2s;
+    }
+    
+    .menuSection.open ul {
+        height: 160px;
+        width: 160px;
+        transition: all 0.2s ease-out;
+    }
+    
+    .menuSection.open ul li {
+        opacity: 1;
+        translate: 0;
+        transition: all 0.2s 0.2s;
+    }
+}

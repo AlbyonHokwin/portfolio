@@ -60,7 +60,7 @@ export default function Home({ profile, projects, experiences, skills, socials }
           <section id="skills" className={styles.section}>
             <Skills skills={skills} />
           </section>
-          <section id="contact-me" className={styles.section}>
+          <section id="contact" className={styles.section}>
             <ContactMe myEmail={profile.email} />
           </section>
         </main>
