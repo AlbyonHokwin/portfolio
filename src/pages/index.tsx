@@ -40,9 +40,9 @@ export default function Home({ profile, projects, experiences, skills, socials }
         <link rel="icon" href="/icon.ico" />
       </Head>
       <div className={styles.container}>
-        <div className={styles.navbarContainer}>
+        <header className={styles.header}>
           <Navbar />
-        </div>
+        </header>
         <main className={styles.main}>
           <section id="me" className={styles.section}>
             <Me
