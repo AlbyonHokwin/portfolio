@@ -47,6 +47,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         alt={picture.alt}
                         fill={true}
                         sizes="(max-width: 350px) 300px, 50vmin"
+                        priority={true}
                     />
                 </div>
                 {github && <a href={github.url} className={`${styles.git} ${styles.flipCard}`} style={gitPictureStyle}>
