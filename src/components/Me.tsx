@@ -51,9 +51,9 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         priority={true}
                     />
                 </a>}
-                {github && isFlip && <div className={styles.overlayImage}>
+                {github && <div className={`${styles.overlayImage} ${isFlip && styles.flipped}`}>
                     <Image
-                        style={{ objectFit: "cover", /* padding: "2px 3px 4px 3px" */ }}
+                        style={{ objectFit: "cover" }}
                         src={github.image.url}
                         alt={github.image.alt}
                         fill={true}

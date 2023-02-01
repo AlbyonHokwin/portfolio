@@ -26,7 +26,8 @@
   }
 }
 
-.front, .back {
+.front,
+.back {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -60,18 +61,21 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  width: min(80px, 30vmin);
+  width: 0;
   height: min(80px, 30vmin);
   overflow: hidden;
   opacity: 0.5;
   background-color: white;
   border-radius: 50%;
-  border: min(10px, 5vmin) solid white;
-  animation: appear 0.8s ease-in;
   z-index: 1000;
 }
 
-
+.overlayImage.flipped {
+  position: absolute;
+  width: min(80px, 30vmin);
+  border: min(10px, 5vmin) solid white;
+  animation: appear 0.8s ease-in;
+}
 
 @keyframes appear {
   0% {
