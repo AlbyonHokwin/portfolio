@@ -7,6 +7,7 @@ import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import type { socialType } from '@/types/socialType';
+import type { refName, refType } from '@/types/refType';
 
 type socialHashIconType = Record<string, IconDefinition>;
 
@@ -15,18 +16,25 @@ const socialHashIcons: socialHashIconType = {
     'LinkedIn': faLinkedin,
 }
 
+const isRefName = (variable: any): variable is refName => (
+    typeof variable === 'string'
+);
+
 type propsType = {
     socials: socialType[];
     refHome: HTMLElement | null;
-    refsMenu: (HTMLElement | null)[];
+    refs: refType;
 }
 
-function Navbar({ socials, refHome, refsMenu }: propsType) {
+function Navbar({ socials, refHome, refs }: propsType) {
     const [showMenu, setShowMenu] = useState<boolean>(false);
+
+    const validKeys: refName[] = [];
+    Object.keys(refs).forEach(key => isRefName(key) && validKeys.push(key));
 
     const handleShowMenu = () => setShowMenu(!showMenu);
 
-    const scrollTo = (ref: HTMLElement | null) => ref?.scrollIntoView({behavior: 'smooth'});
+    const scrollTo = (ref: HTMLElement | null) => ref?.scrollIntoView({ behavior: 'smooth' });
 
     return (
         <nav className={styles.container}>
@@ -45,12 +53,12 @@ function Navbar({ socials, refHome, refsMenu }: propsType) {
             </ul>
 
             <ul className={`${styles.menuSection} ${showMenu && styles.open}`}>
-                {refsMenu.map((ref, i) => {
+                {validKeys.map((key, i) => {
                     return (
-                        <li key={i} onClick={() => scrollTo(ref)}>
-                            {ref?.title}
-                        </li>
-                    );
+                            <li key={i} onClick={() => scrollTo(refs[key])}>
+                                {key}
+                            </li>
+                        );
                 })}
             </ul>
 

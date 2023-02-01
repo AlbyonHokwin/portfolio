@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from '@/styles/Home.module.css'
 
 import Head from 'next/head';
@@ -21,6 +21,7 @@ import type { projectType } from '@/types/projectType';
 import type { experienceType } from '@/types/experienceType';
 import type { skillType } from '@/types/skillType';
 import type { socialType } from '@/types/socialType';
+import type { refName, refType } from '@/types/refType';
 
 type propsType = {
   profile: profileType;
@@ -32,12 +33,16 @@ type propsType = {
 
 export default function Home({ profile, projects, experiences, skills, socials }: propsType) {
   const [refMe, setRefMe] = useState<HTMLElement | null>(null);
-  const [refProjects, setRefProjects] = useState<HTMLElement | null>(null);
-  const [refExperiences, setRefExperiences] = useState<HTMLElement | null>(null);
-  const [refSkills, setRefSkills] = useState<HTMLElement | null>(null);
-  const [refContact, setRefContact] = useState<HTMLElement | null>(null);
+  const [refs, setRefs] = useState<refType>({
+    "Projets": null,
+    "Expériences": null,
+    "Compétences": null,
+    "Me contacter": null,
+  })
 
-  const refsMenu = [refProjects, refExperiences, refSkills, refContact];
+  const handleSetRefs = (key: refName, ref: (HTMLElement | null)) => {
+    if (ref && !refs[key]) setRefs({ ...refs, [key]: ref })
+  }
 
   return (
     <>
@@ -49,26 +54,26 @@ export default function Home({ profile, projects, experiences, skills, socials }
       </Head>
       <div className={styles.container}>
         <header className={styles.header}>
-          <Navbar socials={socials} refHome={refMe} refsMenu={refsMenu} />
+          <Navbar socials={socials} refHome={refMe} refs={refs} />
         </header>
         <main className={styles.main}>
-          <section id="me" ref={ref => setRefMe(ref)} className={styles.section}>
+          <section id="me" ref={refMe ? undefined : ref => ref && setRefMe(ref)} className={styles.section}>
             <Me
               picture={profile.picture}
               pictureGit={profile.pictureGit}
               socials={socials}
             />
           </section>
-          <section title="Projets" ref={ref => setRefProjects(ref)} className={styles.section}>
+          <section ref={ref => handleSetRefs("Projets", ref)} className={styles.section}>
             <Projects projects={projects} />
           </section>
-          <section title="Expériences" ref={ref => setRefExperiences(ref)} className={styles.section}>
+          <section ref={ref => handleSetRefs("Expériences", ref)} className={styles.section}>
             <Experiences experiences={experiences} />
           </section>
-          <section title="Compétences" ref={ref => setRefSkills(ref)} className={styles.section}>
+          <section ref={ref => handleSetRefs("Compétences", ref)} className={styles.section}>
             <Skills skills={skills} />
           </section>
-          <section title="Me contacter" ref={ref => setRefContact(ref)} className={styles.section}>
+          <section ref={ref => handleSetRefs("Me contacter", ref)} className={styles.section}>
             <ContactMe myEmail={profile.email} />
           </section>
         </main>
