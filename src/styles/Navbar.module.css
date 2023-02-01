@@ -11,10 +11,11 @@
 }
 
 .homeIcon,
-.menuIcon {
+.menuIcon,
+.socialIcon {
     color: var(--font-color-light);
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
 }
 
 .menuIcon {
@@ -27,13 +28,16 @@
     transition: all 0.5s;
 }
 
-.menuSection ul {
+.container ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     list-style-type: none;
-    gap: 40px;
+    gap: 50px;
+}
+
+.menuSection {
     font-size: 16px;
     font-weight: bold;
     letter-spacing: 3px;
@@ -41,20 +45,33 @@
     transition: all 0.5s;
 }
 
-@media screen and (max-width: 680px) {
-    .menuSection ul {
+@media screen and (max-width: 900px) {
+    .container ul {
         gap: 20px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .menuSection {
+        font-size: 16px;
+        font-weight: normal;
+        letter-spacing: 0;
     }
 }
 
 @media screen and (max-width: 600px) {
     .menuIcon {
+        position: relative;
         height: auto;
         opacity: 1;
         translate: 0;
     }
 
-    .menuSection ul {
+    .container ul.socials {
+        gap: 40px;
+    }
+
+    .menuSection {
         background-color: var(--secondary);
         width: 0;
         height: 0;
@@ -69,19 +86,19 @@
         transition: all 0.2s ease-out 0.2s;
     }
 
-    .menuSection ul li {
+    .menuSection li {
         opacity: 0;
         translate: 200px;
         transition: all 0.2s;
     }
-    
+
     .menuSection.open ul {
         height: 160px;
         width: 160px;
         transition: all 0.2s ease-out;
     }
-    
-    .menuSection.open ul li {
+
+    .menuSection.open li {
         opacity: 1;
         translate: 0;
         transition: all 0.2s 0.2s;
