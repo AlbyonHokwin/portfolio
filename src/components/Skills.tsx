@@ -9,23 +9,10 @@ type propsType = {
 }
 
 function Skills({ skills }: propsType) {
-    const skillsContainerRef = useRef<HTMLDivElement>(null);
-    const [size, setSize] = useState<number>(0);
-    const numOfSkillOnRow = 3;
-
-    useEffect(() => {
-        if (skillsContainerRef.current) {
-            let calculatedSize = Math.min(Math.floor(0.85 * skillsContainerRef.current.clientWidth / numOfSkillOnRow), 100);
-            setSize(calculatedSize);
-        }
-    }, [skillsContainerRef]);
-
-
-
     return (
         <div className={styles.container}>
             <h2>Compétences</h2>
-            <div className={styles.skillsContainer} ref={skillsContainerRef}>
+            <div className={styles.skillsContainer} >
                 <div className={styles.skills}>
                     {skills.map((skill, i) => {
                         return (
