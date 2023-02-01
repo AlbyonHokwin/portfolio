@@ -41,7 +41,7 @@ export default function Home({ profile, projects, experiences, skills, socials }
       </Head>
       <div className={styles.container}>
         <header className={styles.header}>
-          <Navbar />
+          <Navbar socials={socials} />
         </header>
         <main className={styles.main}>
           <section id="me" className={styles.section}>

@@ -4,7 +4,13 @@ import styles from '@/styles/Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faBars, faX } from '@fortawesome/free-solid-svg-icons';
 
-function Navbar() {
+import type { socialType } from '@/types/socialType';
+
+type propsType = {
+    socials: socialType[];
+}
+
+function Navbar({ socials }: propsType) {
     const [showMenu, setShowMenu] = useState<boolean>(false);
 
     const handleShowMenu = () => setShowMenu(!showMenu);
