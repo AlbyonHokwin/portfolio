@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { RefObject, useState } from 'react'
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from '@/styles/Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faBars, faX } from '@fortawesome/free-solid-svg-icons';
@@ -18,18 +17,18 @@ const socialHashIcons: socialHashIconType = {
 
 type propsType = {
     socials: socialType[];
+    refHome: HTMLElement | null;
+    refsMenu: (HTMLElement | null)[];
 }
 
-function Navbar({ socials }: propsType) {
+function Navbar({ socials, refHome, refsMenu }: propsType) {
     const [showMenu, setShowMenu] = useState<boolean>(false);
 
     const handleShowMenu = () => setShowMenu(!showMenu);
 
     return (
         <nav className={styles.container}>
-            <Link href="#me">
-                <FontAwesomeIcon icon={faHome} className={styles.homeIcon} />
-            </Link>
+            <FontAwesomeIcon onClick={() => refHome?.scrollIntoView()} icon={faHome} className={styles.homeIcon} />
 
             <ul className={styles.socials}>
                 {socials.map((social, i) => {
@@ -44,18 +43,13 @@ function Navbar({ socials }: propsType) {
             </ul>
 
             <ul className={`${styles.menuSection} ${showMenu && styles.open}`}>
-                <li>
-                    <Link href="#projects">Projets</Link>
-                </li>
-                <li>
-                    <Link href="#experiences">Expériences</Link>
-                </li>
-                <li>
-                    <Link href="#skills">Compétences</Link>
-                </li>
-                <li>
-                    <Link href="#contact">Contact</Link>
-                </li>
+                {refsMenu.map((ref, i) => {
+                    return (
+                        <li key={i} onClick={() => ref?.scrollIntoView()}>
+                            {ref?.title}
+                        </li>
+                    );
+                })}
             </ul>
 
             <FontAwesomeIcon

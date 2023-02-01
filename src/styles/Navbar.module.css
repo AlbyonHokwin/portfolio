@@ -17,10 +17,10 @@
     color: var(--font-color-light);
     height: 25px;
     width: 25px;
+    cursor: pointer;
 }
 
 .menuIcon {
-    cursor: pointer;
     position: absolute;
     right: 0;
     height: 0;
@@ -43,6 +43,11 @@
     align-items: center;
     list-style-type: none;
     gap: 50px;
+}
+
+.socials,
+.menuSection li {
+    cursor: pointer;
 }
 
 .menuSection {
@@ -88,7 +93,7 @@
         height: 0;
         overflow: hidden;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-evenly;
         gap: 0;
         position: absolute;
         right: 0;
@@ -107,8 +112,8 @@
     }
 
     .menuSection.open {
-        height: 160px;
-        width: 160px;
+        height: 180px;
+        width: 180px;
         transition: all 0.2s ease-out;
     }
 
