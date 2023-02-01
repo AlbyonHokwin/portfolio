@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import styles from '@/styles/Skills.module.css';
 import Skill from './elements/Skill';
 
@@ -12,6 +12,7 @@ function Skills({ skills }: propsType) {
     return (
         <div className={styles.container}>
             <h2>Compétences</h2>
+
             <div className={styles.skillsContainer} >
                 <div className={styles.skills}>
                     {skills.map((skill, i) => {
