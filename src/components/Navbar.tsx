@@ -26,9 +26,11 @@ function Navbar({ socials, refHome, refsMenu }: propsType) {
 
     const handleShowMenu = () => setShowMenu(!showMenu);
 
+    const scrollTo = (ref: HTMLElement | null) => ref?.scrollIntoView({behavior: 'smooth'});
+
     return (
         <nav className={styles.container}>
-            <FontAwesomeIcon onClick={() => refHome?.scrollIntoView()} icon={faHome} className={styles.homeIcon} />
+            <FontAwesomeIcon onClick={() => scrollTo(refHome)} icon={faHome} className={styles.homeIcon} />
 
             <ul className={styles.socials}>
                 {socials.map((social, i) => {
@@ -45,7 +47,7 @@ function Navbar({ socials, refHome, refsMenu }: propsType) {
             <ul className={`${styles.menuSection} ${showMenu && styles.open}`}>
                 {refsMenu.map((ref, i) => {
                     return (
-                        <li key={i} onClick={() => ref?.scrollIntoView()}>
+                        <li key={i} onClick={() => scrollTo(ref)}>
                             {ref?.title}
                         </li>
                     );
