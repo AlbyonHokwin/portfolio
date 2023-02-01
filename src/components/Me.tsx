@@ -13,34 +13,25 @@ type propsType = {
 }
 
 function Me({ picture, pictureGit, socials }: propsType) {
-    const [pictureStyle, setPictureStyle] = useState<React.CSSProperties>({});
-    const [gitPictureStyle, setGitPictureStyle] = useState<React.CSSProperties>({});
-    const [isFlip, setIsFlip] = useState(false);
+    // const [pictureStyle, setPictureStyle] = useState<React.CSSProperties>({});
+    // const [gitPictureStyle, setGitPictureStyle] = useState<React.CSSProperties>({});
+    const [isFlip, setIsFlip] = useState<boolean>(false);
 
     const github = socials.filter(social => /github/i.test(social.name))[0];
 
     const flipCard = () => {
-        setPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 0 });
-        setGitPictureStyle({ transform: "rotateY(180deg)", transition: "0.7s", opacity: 1 });
-        setIsFlip(true);
-    }
-
-    const deflipCard = () => {
-        setPictureStyle({});
-        setGitPictureStyle({});
-        setIsFlip(false)
-    }
+        github && setIsFlip(!isFlip);
+    };
 
     return (
         <div className={styles.container}>
-            <div className={styles.flipContainer}
+            <div className={`${styles.flipContainer}  ${isFlip && styles.flipped}`}
                 onTouchStart={flipCard}
-                onTouchEnd={deflipCard}
+                onTouchEnd={flipCard}
                 onMouseEnter={flipCard}
-                onMouseLeave={deflipCard}
-                onMouseOut={deflipCard}
+                onMouseLeave={flipCard}
             >
-                <div className={`${styles.picture} ${styles.flipCard}`} style={pictureStyle}>
+                <div className={styles.front}>
                     <Image
                         style={{ objectFit: "cover" }}
                         src={picture.url}
@@ -50,13 +41,14 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         priority={true}
                     />
                 </div>
-                {github && <a href={github.url} className={`${styles.git} ${styles.flipCard}`} style={gitPictureStyle}>
+                {github && <a href={github.url} className={styles.back}>
                     <Image
                         style={{ objectFit: "cover" }}
                         src={pictureGit.url}
                         alt={pictureGit.alt}
                         fill={true}
                         sizes="(max-width: 350px) 300px, 50vmin"
+                        priority={true}
                     />
                 </a>}
                 {github && isFlip && <div className={styles.overlayImage}>

@@ -6,14 +6,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  perspective: 1000px;
 }
 
 .flipContainer {
-  position: absolute;
+  position: relative;
   width: max(40vmin, 315px);
   height: max(40vmin, 315px);
   border-radius: 50%;
-  box-shadow: 0 0 20px var(--box-shadow);
+  border-radius: 20px;
+  transform-style: preserve-3d;
+  cursor: pointer;
 }
 
 @media (max-width: 350px) or (max-height: 350px) {
@@ -23,23 +26,34 @@
   }
 }
 
-.flipCard {
+.front, .back {
   position: absolute;
   height: 100%;
   width: 100%;
   border-radius: 50%;
+  background: black;
+  box-shadow: 0 5px 10px var(--box-shadow);
+  overflow: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform ease 0.5s;
 }
 
-.picture {
-  opacity: 1;
-  transition: transform 0.5s, opacity 0.5s;
-  overflow: hidden;
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
 }
 
-.git {
-  opacity: 0;
-  transition: transform 0.5s, opacity 0.5s;
-  overflow: hidden;
+.back {
+  transform: rotateY(-180deg);
+}
+
+.flipContainer.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.flipContainer.flipped .back {
+  transform: rotateY(0deg);
 }
 
 .overlayImage {
@@ -49,11 +63,11 @@
   width: min(80px, 30vmin);
   height: min(80px, 30vmin);
   overflow: hidden;
-  opacity: 1;
-  background-color: var(--accent);
+  opacity: 0.5;
+  background-color: white;
   border-radius: 50%;
-  border: min(10px, 5vmin) solid var(--accent);
-  animation: appear 1s ease-in;
+  border: min(10px, 5vmin) solid white;
+  animation: appear 0.8s ease-in;
   z-index: 1000;
 }
 
@@ -69,6 +83,6 @@
   }
 
   100% {
-    opacity: 1;
+    opacity: 0.5;
   }
 }
