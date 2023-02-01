@@ -2,7 +2,7 @@ import { sanityClient as client } from './sanityClient';
 import type { skillType } from '@/types/skillType';
 
 const fetchSkills = async () => {
-    const fetchedSkills: skillType[] = await client.fetch(`*[_type == "skill" && isActual]{
+    const fetchedSkills: skillType[] = await client.fetch(`*[_type == "skill" && isActual] | order(skill asc){
         skill,
         image { alt, caption,
             "url": asset->url,
