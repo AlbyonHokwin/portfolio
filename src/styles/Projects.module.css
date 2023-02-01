@@ -21,13 +21,11 @@
 
 .projects::-webkit-scrollbar {
   height: 16px;
-  border-radius: 1000px;
   background: var(--scrollbar-background);
 }
 
 .projects::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 1000px;
 }
 
 .section {

@@ -22,13 +22,11 @@
 
 .experiences::-webkit-scrollbar {
   height: 16px;
-  border-radius: 1000px;
   background: var(--scrollbar-background);
 }
 
 .experiences::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 1000px;
 }
 
 .experiences::-webkit-scrollbar:vertical {

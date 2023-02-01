@@ -24,6 +24,17 @@
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+  scrollbar-width: auto;
+  scrollbar-color: var(--scrollbar-background);
+}
+
+.main::-webkit-scrollbar {
+  height: 16px;
+  background: var(--scrollbar-background);
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
 }
 
 .section {
