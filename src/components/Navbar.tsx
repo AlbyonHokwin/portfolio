@@ -60,7 +60,7 @@ function Navbar({ socials }: propsType) {
 
             <FontAwesomeIcon
                 icon={showMenu ? faX : faBars}
-                className={styles.menuIcon}
+                className={`${styles.menuIcon} ${showMenu && styles.open}`}
                 onClick={handleShowMenu}
             />
 
