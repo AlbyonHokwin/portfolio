@@ -9,7 +9,7 @@ type propsType = {
     skills: skillType[];
 }
 
-const containerVariant = {
+const containerVariants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
@@ -33,15 +33,17 @@ function Skills({ skills }: propsType) {
                 initial={{ opacity: 0, x: '-50vw' }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
             >
                 Compétences
             </motion.h2>
 
             <div className={styles.skillsContainer}>
                 <motion.div className={styles.skills}
-                    variants={containerVariant}
+                    variants={containerVariants}
                     initial="hidden"
                     whileInView="show"
+                    viewport={{ once: true }}
                 >
                     {skills.map((skill, i) => {
                         return (
