@@ -28,11 +28,11 @@ function Skills({ skills }: propsType) {
             <div className={styles.skillsContainer} ref={skillsContainerRef}>
                 <div className={styles.skills}>
                     {skills.map((skill, i) => {
-                        return (<Skill
-                            key={i}
-                            skill={skill}
-                            size={size}
-                        />);
+                        return (
+                            <div key={i} className={styles.skill}>
+                                <Skill skill={skill} maxSize={100} />
+                            </div>
+                        );
                     })}
                 </div>
             </div>

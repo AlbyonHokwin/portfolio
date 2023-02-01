@@ -23,8 +23,8 @@ function Experience({ experience }: propsType) {
         skills,
     } = experience;
 
-    const startDateStr: string = Intl.DateTimeFormat(undefined, {month: 'long', year: 'numeric'}).format(new Date(startDate));
-    const endDateStr: string = Intl.DateTimeFormat(undefined, {month: 'long', year: 'numeric'}).format(new Date(endDate));
+    const startDateStr: string = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(startDate));
+    const endDateStr: string = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(endDate));
 
     return (
         <div className={styles.container}>
@@ -51,7 +51,11 @@ function Experience({ experience }: propsType) {
             </div>
             <div className={styles.skills}>
                 {skills.map((skill, i) => {
-                    return (<Skill key={i} skill={skill} />);
+                    return (
+                        <div key={i} className={styles.skill}>
+                            <Skill skill={skill} maxSize={60} />
+                        </div>
+                    );
                 })}
             </div>
 

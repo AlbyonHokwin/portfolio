@@ -6,19 +6,18 @@ import type { skillType } from '@/types/skillType';
 
 type propsType = {
     skill: skillType;
-    size?: number;
+    maxSize?: number;
 }
 
-function Skill({ skill, size = 60 }: propsType) {
-    const sizeStyle = { height: size, width: size };
+function Skill({ skill, maxSize = 60 }: propsType) {
     return (
-        <div className={styles.skill} style={sizeStyle}>
+        <div className={styles.skill}>
             <Image
-                style={{ objectFit: "contain", padding: size * 0.2 }}
+                style={{ objectFit: "contain", padding: "20%" }}
                 src={skill.image.url}
                 alt={skill.image.alt}
-                width={size}
-                height={size}
+                fill={true}
+                sizes={`${maxSize}px`}
             />
             <div className={styles.skillName}>{skill.skill}</div>
         </div>

@@ -78,13 +78,14 @@ function Project({ project }: propsType) {
                         )
                     })}
                 </div>
-                {/* <div className={styles.titleContainer}>
-                <h3 className={styles.title}>{projectTitle}</h3>
-                {!onProgress && <time className={styles.date}>(Fini en {dateStr})</time>}
-            </div> */}
+
                 <div className={styles.skills}>
                     {skills.map((skill, i) => {
-                        return (<Skill key={i} skill={skill} />);
+                        return (
+                            <div key={i} className={styles.skill}>
+                                <Skill skill={skill} maxSize={60} />
+                            </div>
+                        );
                     })}
                 </div>
 
