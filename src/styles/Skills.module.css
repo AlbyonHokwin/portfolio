@@ -36,6 +36,6 @@
 }
 
 .skill {
-  width: clamp(30px, 20vmin, 100px);
-  height: clamp(30px, 20vmin, 100px);
+  width: clamp(50px, 20vmin, 100px);
+  height: clamp(50px, 20vmin, 100px);
 }

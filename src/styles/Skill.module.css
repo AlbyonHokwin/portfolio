@@ -10,20 +10,31 @@
 }
 
 .skillName {
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
     position: absolute;
-    top: 50px;
-    vertical-align: top;
-    background-color: var(--tertiary);
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
     opacity: 0;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 50%;
     z-index: 1000;
     transition: 0.2s;
 }
 
+.skillName h4 {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    overflow-wrap: break-word;
+}
+
 .skill:hover .skillName {
-    opacity: 1;
+    opacity: 0.8;
 }

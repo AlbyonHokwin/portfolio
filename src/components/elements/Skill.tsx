@@ -13,13 +13,15 @@ function Skill({ skill, maxSize = 60 }: propsType) {
     return (
         <div className={styles.skill}>
             <Image
-                style={{ objectFit: "contain", padding: "20%" }}
+                style={{ objectFit: "contain", padding: "15%" }}
                 src={skill.image.url}
                 alt={skill.image.alt}
                 fill={true}
                 sizes={`${maxSize}px`}
             />
-            <div className={styles.skillName}>{skill.skill}</div>
+            <div className={styles.skillName}>
+                <h4>{skill.skill}</h4>
+            </div>
         </div>
     );
 };
