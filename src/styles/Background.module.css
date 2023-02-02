@@ -1,0 +1,30 @@
+.container {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.line {
+    position: absolute;
+    width: 50vmin;
+    height: 50vmin;
+    border-radius: 50%;
+    rotate: -45deg;
+    border-top: 5px solid var(--accent);
+    transform: rotate()
+    /* animation: toCircle 1s linear infinite alternate forwards; */
+}
+
+@keyframes toCircle {
+    0% {
+        width: 200vmin;
+    }
+
+    100% {
+        width: 60vmin;
+    }
+}

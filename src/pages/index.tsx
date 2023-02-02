@@ -4,6 +4,7 @@ import styles from '@/styles/Home.module.css'
 
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
+import Background from '@/components/Background';
 import Me from '@/components/Me';
 import Projects from '@/components/Projects';
 import Experiences from '@/components/Experiences';
@@ -52,11 +53,17 @@ export default function Home({ profile, projects, experiences, skills, socials }
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.ico" />
       </Head>
+
       <div className={styles.container}>
+
         <header className={styles.header}>
           <Navbar socials={socials} refHome={refMe} refs={refs} />
         </header>
+
         <main className={styles.main}>
+          <div className={styles.background}>
+            <Background />
+          </div>
           <section id="me" ref={refMe ? undefined : ref => ref && setRefMe(ref)} className={styles.section}>
             <Me
               picture={profile.picture}

@@ -8,6 +8,16 @@
   --header-height: 80px;
 }
 
+.background {
+  padding-top: var(--header-height);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 8px;
+  z-index: -1000;
+  overflow: hidden;
+}
+
 .header {
   position: absolute;
   top: 0;
