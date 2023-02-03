@@ -15,8 +15,8 @@ function Background({ mainScroll, numOfPages }: propsType) {
     return (
         <div className={styles.container}>
             <MovingLine numOfPages={numOfPages} scrollYProgress={mainScroll?.scrollYProgress} size='60vmin' startAngle={15} rotateDuration={3} color={'var(--accent)'} />
-            <MovingLine numOfPages={numOfPages} scrollYProgress={mainScroll?.scrollYProgress} size='70vmin' startAngle={105} rotateDuration={5} color={'var(--secondary)'} />
-            <MovingLine numOfPages={numOfPages} scrollYProgress={mainScroll?.scrollYProgress} size='80vmin' startAngle={195} rotateDuration={7} color={'var(--tertiary)'} />
+            <MovingLine numOfPages={numOfPages} scrollYProgress={mainScroll?.scrollYProgress} size='75vmin' startAngle={105} rotateDuration={5} color={'var(--secondary)'} />
+            <MovingLine numOfPages={numOfPages} scrollYProgress={mainScroll?.scrollYProgress} size='90vmin' startAngle={195} rotateDuration={7} color={'var(--tertiary)'} />
         </div>
     );
 };
