@@ -1,5 +1,4 @@
 import React, { RefObject, useState } from 'react'
-import Link from 'next/link';
 import styles from '@/styles/Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faBars, faX } from '@fortawesome/free-solid-svg-icons';
@@ -55,10 +54,10 @@ function Navbar({ socials, refHome, refs }: propsType) {
             <ul className={`${styles.menuSection} ${showMenu && styles.open}`}>
                 {validKeys.map((key, i) => {
                     return (
-                            <li key={i} onClick={() => scrollTo(refs[key])}>
-                                {key}
-                            </li>
-                        );
+                        <li key={i} onClick={() => scrollTo(refs[key])}>
+                            {key}
+                        </li>
+                    );
                 })}
             </ul>
 
