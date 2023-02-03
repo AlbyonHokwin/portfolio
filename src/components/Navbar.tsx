@@ -33,7 +33,10 @@ function Navbar({ socials, refHome, refs }: propsType) {
 
     const handleShowMenu = () => setShowMenu(!showMenu);
 
-    const scrollTo = (ref: HTMLElement | null) => ref?.scrollIntoView({ behavior: 'smooth' });
+    const scrollTo = (ref: HTMLElement | null) => {
+        ref?.scrollIntoView({ behavior: 'smooth' });
+        setShowMenu(false);
+    }
 
     return (
         <nav className={styles.container}>
