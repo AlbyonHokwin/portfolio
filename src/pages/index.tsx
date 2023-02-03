@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from '@/styles/Home.module.css'
 
 import Head from 'next/head';
@@ -10,6 +10,8 @@ import Projects from '@/components/Projects';
 import Experiences from '@/components/Experiences';
 import Skills from '@/components/Skills';
 import ContactMe from '@/components/ContactMe';
+
+import { useScroll } from 'framer-motion'
 
 import { fetchProfile } from './api/fetchProfile';
 import { fetchProjects } from './api/fetchProjects';
@@ -33,6 +35,8 @@ type propsType = {
 }
 
 export default function Home({ profile, projects, experiences, skills, socials }: propsType) {
+  const mainRef = useRef(null);
+  const mainScroll = useScroll({ container: mainRef });
   const [refMe, setRefMe] = useState<HTMLElement | null>(null);
   const [refs, setRefs] = useState<refType>({
     "Projets": null,
@@ -60,9 +64,9 @@ export default function Home({ profile, projects, experiences, skills, socials }
           <Navbar socials={socials} refHome={refMe} refs={refs} />
         </header>
 
-        <main className={styles.main}>
+        <main ref={mainRef} className={styles.main}>
           <div className={styles.background}>
-            <Background />
+            <Background mainScroll={mainScroll} numOfPages={5} />
           </div>
           <section id="me" ref={refMe ? undefined : ref => ref && setRefMe(ref)} className={styles.section}>
             <Me
