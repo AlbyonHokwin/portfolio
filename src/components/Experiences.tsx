@@ -9,51 +9,40 @@ type propsType = {
     experiences: experienceType[];
 }
 
-const experiencesVariants = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            delayChildren: 0.5,
-        },
+const variants = {
+    hidden: {
+        x: '-100vw',
+        transition: { duration: 0.5 },
     },
-}
-
-const experienceVariants = {
-    hidden: { opacity: 0, x: 1000 },
-    show: {
-        opacity: 1,
+    visible: {
         x: 0,
-        transition: { duration: 0.5 }
-    },
+        transition: { duration: 0.5 },
+    }
 }
 
 function Experiences({ experiences }: propsType) {
     return (
-        <div className={styles.container}>
-            <motion.h2
-                initial={{ opacity: 0, x: '-50vw' }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-            >
+        <motion.div className={styles.container}
+            initial='hidden'
+            whileInView='visible'
+            transition={{
+                delayChildren: 0.1,
+                staggerChildren: 0.2,
+            }}
+        >
+            <motion.h2 variants={variants}>
                 Expériences
             </motion.h2>
 
-            <motion.div className={styles.experiences}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                variants={experiencesVariants}
-            >
+            <motion.div className={styles.experiences} variants={variants}>
                 {experiences.map((experience, i) => {
                     return (
-                        <motion.section key={i} className={styles.section} variants={experienceVariants}>
+                        <section key={i} className={styles.section}>
                             <Experience experience={experience} />
-                        </motion.section>)
+                        </section>)
                 })}
             </motion.div>
-        </div>
+        </motion.div>
     )
 }
 
