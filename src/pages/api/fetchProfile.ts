@@ -17,6 +17,12 @@ const fetchProfile = async () => {
             "width": asset->metadata.dimensions.width,
             "height": asset->metadata.dimensions.height,
         },
+        pictureAboutMe { alt, caption,
+            "url": asset->url,
+            "aspect": asset->metadata.dimensions.aspectRatio,
+            "width": asset->metadata.dimensions.width,
+            "height": asset->metadata.dimensions.height,
+        },
     }[0]`);
 
     return {
@@ -28,6 +34,10 @@ const fetchProfile = async () => {
         pictureGit: {
             ...fetchedProfile.pictureGit,
             caption: fetchedProfile.pictureGit.caption || '',
+        },
+        pictureAboutMe: {
+            ...fetchedProfile.pictureAboutMe,
+            caption: fetchedProfile.pictureAboutMe.caption || '',
         },
     }
 };
