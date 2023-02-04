@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from '@/styles/AboutMe.module.css';
+import Image from 'next/image';
+import { PortableText } from '@portabletext/react'
 import { motion } from 'framer-motion';
 
 import type { profileType } from '@/types/profileType';
 
 type propsType = {
     description: profileType['description'];
+    pictureAboutMe: profileType['pictureAboutMe'];
 }
 
 const variants = {
@@ -19,7 +22,7 @@ const variants = {
     }
 }
 
-function AboutMe({ description }: propsType) {
+function AboutMe({ description, pictureAboutMe }: propsType) {
     return (
         <motion.div className={styles.container}
             initial='hidden'
@@ -34,9 +37,24 @@ function AboutMe({ description }: propsType) {
             </motion.h2>
 
             <motion.div className={styles.aboutMeContainer} variants={variants}>
-                A propos de moi
+                <div className={styles.imageContainer}>
+                    <Image
+                        style={{ objectFit: "cover" }}
+                        className={styles.image}
+                        src={pictureAboutMe.url}
+                        alt={pictureAboutMe.alt}
+                        fill={true}
+                        sizes="(max-width: 350px) 300px, 50vmin"
+                        priority={true}
+                    />
+                </div>
+
+                <div className={styles.description}>
+                    <PortableText value={description} />
+                </div>
+
             </motion.div>
-        </motion.div>
+        </motion.div >
     )
 };
 

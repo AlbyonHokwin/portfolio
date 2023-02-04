@@ -78,7 +78,10 @@ export default function Home({ profile, projects, experiences, skills, socials }
             />
           </section>
           <section ref={ref => handleSetRefs("A propos", ref)} className={styles.section}>
-            <AboutMe description={profile.description} />
+            <AboutMe
+              description={profile.description}
+              pictureAboutMe={profile.pictureAboutMe}
+            />
           </section>
           <section ref={ref => handleSetRefs("Projets", ref)} className={styles.section}>
             <Projects projects={projects} />
