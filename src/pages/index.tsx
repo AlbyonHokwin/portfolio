@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Background from '@/components/Background';
 import Me from '@/components/Me';
+import AboutMe from '@/components/AboutMe';
 import Projects from '@/components/Projects';
 import Experiences from '@/components/Experiences';
 import Skills from '@/components/Skills';
@@ -39,6 +40,7 @@ export default function Home({ profile, projects, experiences, skills, socials }
   const mainScroll = useScroll({ container: mainRef });
   const [refMe, setRefMe] = useState<HTMLElement | null>(null);
   const [refs, setRefs] = useState<refType>({
+    "A propos": null,
     "Projets": null,
     "Expériences": null,
     "Compétences": null,
@@ -66,7 +68,7 @@ export default function Home({ profile, projects, experiences, skills, socials }
 
         <main ref={mainRef} className={styles.main}>
           <div className={styles.background}>
-            <Background mainScroll={mainScroll} numOfPages={5} />
+            <Background mainScroll={mainScroll} numOfPages={6} />
           </div>
           <section id="me" ref={refMe ? undefined : ref => ref && setRefMe(ref)} className={styles.section}>
             <Me
@@ -74,6 +76,9 @@ export default function Home({ profile, projects, experiences, skills, socials }
               pictureGit={profile.pictureGit}
               socials={socials}
             />
+          </section>
+          <section ref={ref => handleSetRefs("A propos", ref)} className={styles.section}>
+            <AboutMe description={profile.description} />
           </section>
           <section ref={ref => handleSetRefs("Projets", ref)} className={styles.section}>
             <Projects projects={projects} />
