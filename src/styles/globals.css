@@ -68,8 +68,7 @@ body {
 h2 {
   font-size: max(25px, 5vmin);
   letter-spacing: 0.3em;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
 
 a {
