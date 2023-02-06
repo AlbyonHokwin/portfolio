@@ -3,7 +3,7 @@ import styles from '@/styles/Projects.module.css'
 import type { projectType } from '@/types/projectType';
 import { motion } from 'framer-motion';
 
-import Project from './modules/Project';
+import ProjectWithCarousel from './modules/ProjectWithCarousel';
 
 type propsType = {
     projects: projectType[];
@@ -38,7 +38,7 @@ function Projects({ projects }: propsType) {
                 {projects.map((project, i) => {
                     return (
                         <section key={i} className={styles.section}>
-                            <Project project={project} />
+                            <ProjectWithCarousel project={project} />
                         </section>)
                 })}
             </motion.div>
