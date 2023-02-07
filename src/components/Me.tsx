@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import styles from '@/styles/Me.module.css'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import styles from '@/styles/Me.module.css';
 
-import type { imageType } from '@/types/imageType'
-import type { socialType } from '@/types/socialType'
-import { setTimeout } from 'timers'
+import type { imageType } from '@/types/imageType';
+import type { socialType } from '@/types/socialType';
 
 type propsType = {
     picture: imageType;
@@ -13,8 +12,7 @@ type propsType = {
 }
 
 function Me({ picture, pictureGit, socials }: propsType) {
-    // const [pictureStyle, setPictureStyle] = useState<React.CSSProperties>({});
-    // const [gitPictureStyle, setGitPictureStyle] = useState<React.CSSProperties>({});
+    console.log(styles);
     const [isFlip, setIsFlip] = useState<boolean>(false);
 
     const github = socials.filter(social => /github/i.test(social.name))[0];
@@ -60,6 +58,14 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         sizes="80px"
                     />
                 </div>}
+                <div className={styles.introContainer}>
+                    <h1 className={styles.name}>
+                        Camille HAUSTANT
+                    </h1>
+                    <p className={styles.job}>
+                        Développeur Full Stack
+                    </p>
+                </div>
             </div>
         </div>
     )
