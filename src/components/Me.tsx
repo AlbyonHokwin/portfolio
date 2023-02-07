@@ -12,7 +12,6 @@ type propsType = {
 }
 
 function Me({ picture, pictureGit, socials }: propsType) {
-    console.log(styles);
     const [isFlip, setIsFlip] = useState<boolean>(false);
 
     const github = socials.filter(social => /github/i.test(social.name))[0];
