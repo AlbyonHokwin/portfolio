@@ -1,11 +1,14 @@
-import React, { LegacyRef, useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/ProjectWithCarousel.module.css'
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
+import Arrow from '@/components/elements/Arrow';
+import Dots from '@/components/elements/Dots';
 import { PortableText } from '@portabletext/react'
 
 import "keen-slider/keen-slider.min.css"
-import { useKeenSlider, KeenSliderPlugin, TrackDetails } from "keen-slider/react"
+import { useKeenSlider, KeenSliderPlugin } from 'keen-slider/react';
+import type { TrackDetails, TrackInstance } from 'keen-slider/react';
 
 import type { projectType } from '@/types/projectType';
 
@@ -28,22 +31,52 @@ function ProjectWithCarousel({ project }: propsType) {
 
     const [slidesPerView, setSlidesPerView] = useState<number>(1);
     const [imageHeight, setImageHeight] = useState<number>(0);
-    const [imagesContainerRef] = useKeenSlider<HTMLDivElement>({
-        loop: true,
-        mode: "snap",
-        slides: { origin: 'center', perView: slidesPerView, spacing: 15 },
-        created(slider) {
-            setImageHeight(slider.container.clientHeight)
-            setSlidesPerView(Math.max(1, slider.size / (slider.container.clientHeight * mainImage.aspect)));
+    const [track, setTrack] = useState<TrackInstance | null>(null);
+    const [details, setDetails] = useState<TrackDetails | null>(null);
+    const [currentSlide, setCurrentSlide] = useState<number>(0);
+    const [loaded, setLoaded] = useState<boolean>(false);
+
+    const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+        {
+            initial: 0,
+            loop: true,
+            mode: 'snap',
+            renderMode: 'performance',
+            slides: { origin: 'center', perView: slidesPerView },
+            created() {
+                setLoaded(true);
+            },
+            detailsChanged(slider) {
+                setDetails(slider.track.details);
+                setTrack(slider.track);
+                setImageHeight(slider.container.clientHeight);
+                setSlidesPerView(Math.max(1, slider.size / (slider.container.clientHeight * mainImage.aspect)));
+            },
+            slideChanged(slider) {
+                setCurrentSlide(slider.track.details.rel);
+            },
         },
-        detailsChanged(slider) {
-            setImageHeight(slider.container.clientHeight)
-            setSlidesPerView(Math.max(1, slider.size / (slider.container.clientHeight * mainImage.aspect)));
-        },
-    });
+    );
 
     let dateStr: string = '';
     !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
+
+    const slideStyle = (i: number) => {
+        if (!track || !details) return {};
+        const slide = details.slides[i];
+        const scaleSize = 0.85;
+        const scale = Math.max(scaleSize, 1 - Math.abs(track?.idxToDist(i) || 0));
+
+        return {
+            opacity: slide.portion,
+            transform: `scale(${scale})`,
+            WebkitTransform: `scale(${scale})`,
+        }
+    }
+
+    const clickOnDot = (i: number) => {
+        instanceRef.current?.moveToIdx(i);
+    }
 
     return (
         <div className={styles.container}>
@@ -52,39 +85,73 @@ function ProjectWithCarousel({ project }: propsType) {
                 {!onProgress && <time className={styles.date}>(Fini en {dateStr})</time>}
             </div>
             <div className={styles.content}>
-                <div className={`keen-slider ${styles.images}`} ref={imagesContainerRef}>
-                    {video &&
-                        <iframe
-                            className={`keen-slider__slide ${styles.video}`}
-                            src={video}
-                            allow="autoplay; fullscreen"
-                            loading='lazy'
-                            height={imageHeight}
-                            width={imageHeight * mainImage.aspect}
-                        />
-                    }
-                    <Image
-                        style={{ objectFit: "cover" }}
-                        className={`keen-slider__slide ${styles.image}`}
-                        src={mainImage.url}
-                        alt={mainImage.alt}
-                        width={mainImage.width}
-                        height={mainImage.height}
-                    />
-                    {images.map((image, i) => {
-                        return (
+
+                <div className={styles.sliderContainer}>
+                    <div className={`keen-slider ${styles.slider}`} ref={sliderRef}>
+                        {video &&
+                            <div className='keen-slider__slide'>
+                                <iframe
+                                    style={{ ...slideStyle(0) }}
+                                    className={styles.video}
+                                    src={video}
+                                    allow="autoplay; fullscreen"
+                                    loading='lazy'
+                                    height={imageHeight}
+                                    width={imageHeight * mainImage.aspect}
+                                />
+                            </div>
+                        }
+                        <div className='keen-slider__slide'>
                             <Image
-                                key={i}
-                                style={{ objectFit: "cover" }}
-                                className={`keen-slider__slide ${styles.image}`}
-                                src={image.url}
-                                alt={image.alt}
-                                width={image.width}
-                                height={image.height}
+                                style={{ objectFit: "cover", ...slideStyle(video ? 1 : 0) }}
+                                className={styles.image}
+                                src={mainImage.url}
+                                alt={mainImage.alt}
+                                width={mainImage.width}
+                                height={mainImage.height}
                             />
-                        )
-                    })}
+                        </div>
+                        {images.map((image, i) => {
+                            const idx: number = video ? i + 2 : i + 1;
+                            return (
+                                <div key={i} className='keen-slider__slide'>
+                                    <Image
+                                        style={{ objectFit: "cover", ...slideStyle(idx) }}
+                                        className={styles.image}
+                                        src={image.url}
+                                        alt={image.alt}
+                                        width={image.width}
+                                        height={image.height}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </div>
+                    {loaded && instanceRef.current && (
+                        <>
+                            <Arrow
+                                left
+                                onClick={(e: any) =>
+                                    e.stopPropagation() || instanceRef.current?.prev()
+                                }
+                            />
+
+                            <Arrow
+                                onClick={(e: any) =>
+                                    e.stopPropagation() || instanceRef.current?.next()
+                                }
+                            />
+                        </>
+                    )}
                 </div>
+
+                {loaded && instanceRef.current &&
+                    <Dots
+                        length={instanceRef.current.track.details.slides.length}
+                        currentSlide={currentSlide}
+                        onClick={clickOnDot}
+                    />
+                }
 
                 <div className={styles.skills}>
                     {skills.map((skill, i) => {
