@@ -47,7 +47,7 @@
 
 .sliderContainer {
     width: 100%;
-    min-height: max(300px, 50%);
+    min-height: max(150px, 50%);
     flex-grow: 1;
     position: relative;
 }
