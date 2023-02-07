@@ -61,10 +61,10 @@ function Me({ picture, pictureGit, socials }: propsType) {
                 <div className={styles.introContainer}>
                     <h1 className={styles.name}>
                         Camille HAUSTANT
+                        <span className={styles.job}>
+                            Développeur Full Stack
+                        </span>
                     </h1>
-                    <p className={styles.job}>
-                        Développeur Full Stack
-                    </p>
                 </div>
             </div>
         </div>
