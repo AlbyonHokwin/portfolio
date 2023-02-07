@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from '@/styles/ProjectWithCarousel.module.css'
+import styles from '@/styles/Project.module.css'
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
 import Arrow from '@/components/elements/Arrow';
@@ -16,7 +16,7 @@ type propsType = {
     project: projectType;
 }
 
-function ProjectWithCarousel({ project }: propsType) {
+function Project({ project }: propsType) {
     const {
         projectTitle,
         description,
@@ -188,4 +188,4 @@ function ProjectWithCarousel({ project }: propsType) {
     )
 }
 
-export default ProjectWithCarousel;
+export default Project;
