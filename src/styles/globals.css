@@ -23,6 +23,7 @@
 
   --background: #000;
   --foreground: #fff;
+  --dark-foreground: #222;
   --box-shadow: #000;
   --scrollbar-background: var(--secondary);
   --scrollbar-thumb: var(--tertiary);
