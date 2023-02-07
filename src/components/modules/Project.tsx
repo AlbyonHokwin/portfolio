@@ -7,7 +7,7 @@ import Dots from '@/components/elements/Dots';
 import { PortableText } from '@portabletext/react'
 
 import "keen-slider/keen-slider.min.css"
-import { useKeenSlider, KeenSliderPlugin } from 'keen-slider/react';
+import { useKeenSlider } from 'keen-slider/react';
 import type { TrackDetails, TrackInstance } from 'keen-slider/react';
 
 import type { projectType } from '@/types/projectType';
