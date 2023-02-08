@@ -20,7 +20,7 @@ function Skill({ skill, maxSize = 60 }: propsType) {
                 sizes={`${maxSize}px`}
             />
             <div className={styles.skillName}>
-                <h4>{skill.skill}</h4>
+                <h3>{skill.skill}</h3>
             </div>
         </div>
     );
