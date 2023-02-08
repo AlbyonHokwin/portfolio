@@ -56,18 +56,17 @@ function ContactMe({ myEmail }: propsType) {
     const errorMessageRequired: string = 'Champ obligatoire';
 
     const onSubmit: SubmitHandler<Inputs> = data => {
-        console.log(data);
-        // setIsLoading(true);
-        // const params = { myEmail, ...data };
-        // emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, params, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
-        //     .then(result => {
-        //         if (result.text === 'OK') {
-        //             alert("Votre message a bien été envoyé.");
-        //             reset();
-        //             setIsLoading(false);
-        //         }
-        //     })
-        //     .catch(() => alert("Une erreur s'est produite durant l'envoi, veuillez réessayer."));
+        setIsLoading(true);
+        const params = { myEmail, ...data };
+        emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, params, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+            .then(result => {
+                if (result.text === 'OK') {
+                    alert("Votre message a bien été envoyé.");
+                    reset();
+                    setIsLoading(false);
+                }
+            })
+            .catch(() => alert("Une erreur s'est produite durant l'envoi, veuillez réessayer."));
     };
 
     return (
