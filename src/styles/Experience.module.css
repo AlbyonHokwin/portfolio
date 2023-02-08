@@ -78,7 +78,7 @@
 
 .description {
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     text-align: justify;
     color: var(--foreground);
 }

@@ -88,7 +88,8 @@
 
 .description {
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: normal;
     text-align: justify;
     color: var(--foreground);
 }
