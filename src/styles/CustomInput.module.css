@@ -1,0 +1,65 @@
+.input,
+.textarea {
+    background-color: var(--background);
+    border: 2px solid var(--dark-foreground);
+    border-radius: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.input {
+    padding: 0 16px;
+    height: 56px;
+}
+
+.textarea {
+    padding: 16px;
+    overflow: auto;
+    resize: none;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: var(--accent);
+}
+
+.filled {
+    border-color: var(--secondary);
+}
+
+.error {
+    border-color: red;
+}
+
+.label {
+    position: absolute;
+    left: 16px;
+    top: 28px;
+    translate: 0 -50%;
+    pointer-events: none;
+    padding: 0;
+    color: var(--font-color-dark);
+    background-color: var(--background);
+    transition: 0.3s;
+}
+
+:is(.input:focus, .textarea:focus, .filled)~.label {
+    top: 0;
+    color: var(--font-color-light);
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.errorMessage {
+    color: red;
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.errorIcon {
+    margin-right: 5px;
+}
