@@ -25,6 +25,14 @@
     border-color: var(--accent);
 }
 
+.input:-internal-autofill-selected,
+.input:-webkit-autofill,
+.textarea:-internal-autofill-selected,
+.textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
 .filled {
     border-color: var(--secondary);
 }
