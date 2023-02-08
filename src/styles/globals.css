@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
 :root {
-  --font-mono: 'Ubuntu', sans-serif;
+  --font-mono: 'Open Sans', sans-serif;
 
   --primary: #122238;
   --secondary: #0C355B;
   --tertiary: #247BA0;
-  --accent: #E3B23C;
+  --accent: #00ccff;
 
   --font-color-light: #fff;
   --font-color-dark: #aaa;
@@ -13,8 +15,8 @@
   --foreground: #fff;
   --dark-foreground: #111;
   --box-shadow: #000;
-  --scrollbar-background: var(--secondary);
-  --scrollbar-thumb: var(--tertiary);
+  --scrollbar-background: var(--primary);
+  --scrollbar-thumb: var(--accent);
 }
 
 * {
