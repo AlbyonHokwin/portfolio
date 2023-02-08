@@ -9,7 +9,7 @@ type propsType = {
     startAngle: number;
     rotateDuration: CSSProperties['animationDuration'] | number;
     color: CSSProperties['color'];
-    scrollYProgress?: ReturnType<typeof useMotionValue<number>>;
+    scrollYProgress: ReturnType<typeof useMotionValue<number>>;
     numOfPages: number;
 }
 
@@ -31,45 +31,43 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
             rotate: startAngle + 360,
             scale: [1, 1.05]
         });
-    }, []);
+    }, [controls, startAngle]);
 
-    if (scrollYProgress) {
-        useMotionValueEvent(scrollYProgress, 'change', value => {
-            if (value >= threshold) {
-                controls.stop();
-                controls.start({
-                    scale: [1, 1.05]
-                });
-            } else {
-                controls.stop();
-                controls.start({
-                    rotate: startAngle + 360,
-                    scale: [1, 1.05]
-                });
-            }
-        })
+    useMotionValueEvent(scrollYProgress, 'change', value => {
+        if (value >= threshold) {
+            controls.stop();
+            controls.start({
+                scale: [1, 1.05]
+            });
+        } else {
+            controls.stop();
+            controls.start({
+                rotate: startAngle + 360,
+                scale: [1, 1.05]
+            });
+        }
+    })
 
-        width = useTransform(scrollYProgress,
-            [0, threshold, 1],
-            [size, '500vmin', '500vmin']
-        );
-        height = useTransform(scrollYProgress,
-            [0, threshold, 1],
-            [size, '50vmin', '50vmin']
-        );
-        rotate = useTransform(scrollYProgress,
-            [0, threshold, 1],
-            [startAngle, -45, 45]
-        );
-        borderTopWidth = useTransform(scrollYProgress,
-            [0, threshold, 1],
-            [5, 20, 40]
-        );
-        translateY = useTransform(scrollYProgress,
-            [0, threshold, 1],
-            [0, -startAngle, -startAngle]
-        );
-    }
+    width = useTransform(scrollYProgress,
+        [0, threshold, 1],
+        [size, '500vmin', '500vmin']
+    );
+    height = useTransform(scrollYProgress,
+        [0, threshold, 1],
+        [size, '50vmin', '50vmin']
+    );
+    rotate = useTransform(scrollYProgress,
+        [0, threshold, 1],
+        [startAngle, -45, 45]
+    );
+    borderTopWidth = useTransform(scrollYProgress,
+        [0, threshold, 1],
+        [5, 20, 40]
+    );
+    translateY = useTransform(scrollYProgress,
+        [0, threshold, 1],
+        [0, -startAngle, -startAngle]
+    );
 
     return (
         <motion.div
