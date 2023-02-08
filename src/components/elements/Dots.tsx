@@ -18,6 +18,7 @@ function Dots({ length, currentSlide, onClick }: propsType) {
                         key={i}
                         className={`${styles.dot} ${isActive && styles.active}`}
                         onClick={() => onClick(i)}
+                        aria-label={`button to image ${i + 1}`}
                     ></button>
                 )
             })}

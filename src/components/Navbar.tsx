@@ -46,7 +46,9 @@ function Navbar({ socials, refHome, refs }: propsType) {
                 {socials.map((social, i) => {
                     return (
                         <li key={i}>
-                            <a href={social.url}>
+                            <a href={social.url}
+                            aria-label={`See ${social.name} page of this portfolio`}
+                            >
                                 <FontAwesomeIcon icon={socialHashIcons[social.name]} className={styles.socialIcon} />
                             </a>
                         </li>
