@@ -58,13 +58,3 @@
     padding: 10px;
     font-size: 20px;
 }
-
-.button:hover {
-    cursor: pointer;
-    opacity: 0.9;
-}
-
-.button:active {
-    top: 3px;
-    opacity: 0.6;
-}

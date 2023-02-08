@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import emailjs from '@emailjs/browser';
 import styles from '@/styles/ContactMe.module.css'
 import CustomInput from '@/components/elements/CustomInput';
 
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 
 type Inputs = {
@@ -36,7 +36,6 @@ const inputVariants = {
 }
 
 const EMAIL_REGEX: RegExp = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i;
-const errorIcon = <FontAwesomeIcon icon={faCircleExclamation} className={styles.errorIcon} />
 const spinnerIcon = <FontAwesomeIcon icon={faSpinner} spinPulse />
 
 function ContactMe({ myEmail }: propsType) {
@@ -49,9 +48,7 @@ function ContactMe({ myEmail }: propsType) {
             message: ''
         }
     });
-    const { register, handleSubmit, reset, watch, clearErrors, formState: { errors } } = formMethods;
-
-    const { name, email, subject, message } = watch();
+    const { handleSubmit, reset } = formMethods;
 
     const errorMessageRequired: string = 'Champ obligatoire';
 
@@ -135,7 +132,10 @@ function ContactMe({ myEmail }: propsType) {
                             />
                         </motion.div>
 
-                        <motion.button type="submit" className={styles.button} variants={inputVariants}>
+                        <motion.button type="submit" className={styles.button}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            variants={inputVariants}>
                             {isLoading && spinnerIcon} Envoyer
                         </motion.button>
                     </motion.form>
