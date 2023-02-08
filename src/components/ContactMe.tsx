@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser';
 import styles from '@/styles/ContactMe.module.css'
+import CustomInput from '@/components/elements/CustomInput';
 
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 
 type Inputs = {
     name: string;
@@ -40,7 +41,7 @@ const spinnerIcon = <FontAwesomeIcon icon={faSpinner} spinPulse />
 
 function ContactMe({ myEmail }: propsType) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { register, handleSubmit, reset, watch, clearErrors, formState: { errors } } = useForm<Inputs>({
+    const formMethods = useForm<Inputs>({
         defaultValues: {
             name: '',
             email: '',
@@ -48,21 +49,25 @@ function ContactMe({ myEmail }: propsType) {
             message: ''
         }
     });
+    const { register, handleSubmit, reset, watch, clearErrors, formState: { errors } } = formMethods;
 
     const { name, email, subject, message } = watch();
 
+    const errorMessageRequired: string = 'Champ obligatoire';
+
     const onSubmit: SubmitHandler<Inputs> = data => {
-        setIsLoading(true);
-        const params = { myEmail, ...data };
-        emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, params, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
-            .then(result => {
-                if (result.text === 'OK') {
-                    alert("Votre message a bien été envoyé.");
-                    reset();
-                    setIsLoading(false);
-                }
-            })
-            .catch(() => alert("Une erreur s'est produite durant l'envoi, veuillez réessayer."));
+        console.log(data);
+        // setIsLoading(true);
+        // const params = { myEmail, ...data };
+        // emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, params, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+        //     .then(result => {
+        //         if (result.text === 'OK') {
+        //             alert("Votre message a bien été envoyé.");
+        //             reset();
+        //             setIsLoading(false);
+        //         }
+        //     })
+        //     .catch(() => alert("Une erreur s'est produite durant l'envoi, veuillez réessayer."));
     };
 
     return (
@@ -76,56 +81,67 @@ function ContactMe({ myEmail }: propsType) {
                 Me contacter
             </motion.h2>
 
-            <div className={styles.formContainer}>
-                <motion.form className={styles.form} onSubmit={handleSubmit(onSubmit)}
-                    initial='hidden'
-                    whileInView='show'
-                    viewport={{ once: true }}
-                    variants={formVariants}
-                >
+            <FormProvider {...formMethods} >
+                <div className={styles.formContainer}>
+                    <motion.form className={styles.form} onSubmit={handleSubmit(onSubmit)}
+                        initial='hidden'
+                        whileInView='show'
+                        viewport={{ once: true }}
+                        variants={formVariants}
+                    >
 
-                    <motion.div className={styles.inputContainer} variants={inputVariants}>
-                        <input
-                            className={`${styles.input} ${errors.name ? styles.error : name ? styles.filled : ''}`}
-                            type="text"
-                            id="input-name"
-                            {...register("name", { required: true, maxLength: 80 })}
-                            aria-invalid={errors.name ? 'true' : 'false'}
-                        />
-                        <label htmlFor="input-name" className={styles.label}>Nom</label>
-                        {errors.name && <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div>}
-                    </motion.div>
+                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                            <CustomInput
+                                formName='name'
+                                formOptions={{ required: true, maxLength: 80 }}
+                                label='Nom'
+                                id='input-name'
+                                errorMessageRequired={errorMessageRequired}
+                                type='text'
+                            />
+                        </motion.div>
 
-                    <motion.div className={styles.inputContainer} variants={inputVariants}>
-                        <input className={styles.input} type="text" placeholder="E-mail"
-                            {...register("email", { required: true, pattern: EMAIL_REGEX })}
-                            aria-invalid={errors.email ? 'true' : 'false'}
-                        />
-                        {errors.email?.type === 'required' ? <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div> :
-                            errors.email?.type === 'pattern' && <div className={styles.errorMessage}>{errorIcon}Saisissez une adresse-email valide</div>}
-                    </motion.div>
+                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                            <CustomInput
+                                formName='email'
+                                formOptions={{ required: true, pattern: EMAIL_REGEX }}
+                                label='E-mail'
+                                id='input-email'
+                                errorMessageRequired={errorMessageRequired}
+                                errorMessagePattern='Saisissez une adresse-email valide'
+                                type='text'
+                            />
+                        </motion.div>
 
-                    <motion.div className={styles.inputContainer} variants={inputVariants}>
-                        <input className={styles.input} type="text" placeholder="Objet"
-                            {...register("subject", { required: true })}
-                            aria-invalid={errors.subject ? 'true' : 'false'}
-                        />
-                        {errors.subject && <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div>}
-                    </motion.div>
+                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                            <CustomInput
+                                formName='subject'
+                                formOptions={{ required: true }}
+                                label='Object'
+                                id='input-subject'
+                                errorMessageRequired={errorMessageRequired}
+                                type='text'
+                            />
+                        </motion.div>
 
-                    <motion.div className={styles.inputContainer} variants={inputVariants}>
-                        <textarea className={styles.textarea} placeholder="Message" rows={7}
-                            {...register("message", { required: true })}
-                            aria-invalid={errors.message ? 'true' : 'false'}
-                        />
-                        {errors.message && <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div>}
-                    </motion.div>
+                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                            <CustomInput
+                                formName='message'
+                                formOptions={{ required: true }}
+                                label='Message'
+                                id='input-message'
+                                errorMessageRequired={errorMessageRequired}
+                                isTextarea
+                                rows={7}
+                            />
+                        </motion.div>
 
-                    <motion.button type="submit" className={styles.button} variants={inputVariants}>
-                        {isLoading && spinnerIcon} Envoyer
-                    </motion.button>
-                </motion.form>
-            </div>
+                        <motion.button type="submit" className={styles.button} variants={inputVariants}>
+                            {isLoading && spinnerIcon} Envoyer
+                        </motion.button>
+                    </motion.form>
+                </div>
+            </FormProvider>
         </div>
     )
 }
