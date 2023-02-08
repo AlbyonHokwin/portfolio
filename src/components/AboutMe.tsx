@@ -44,7 +44,7 @@ function AboutMe({ description, pictureAboutMe }: propsType) {
                         src={pictureAboutMe.url}
                         alt={pictureAboutMe.alt}
                         fill={true}
-                        sizes="(max-width: 350px) 300px, 50vmin"
+                        sizes="450px"
                         priority={true}
                     />
                 </div>

@@ -29,7 +29,7 @@
 .imageContainer {
     position: relative;
     min-height: max(50%, 300px);
-    width: max(80%, 150px);
+    width: clamp(150px, 80%, 450px);
     display: flex;
     justify-content: center;
     align-items: flex-start;

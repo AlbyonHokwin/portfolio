@@ -11,8 +11,8 @@
 
 .flipContainer {
   position: relative;
-  width: max(40vmin, 315px);
-  height: max(40vmin, 315px);
+  width: clamp(315px, 40vmin, 450px);
+  height: clamp(315px, 40vmin, 450px);
   border-radius: 50%;
   border-radius: 20px;
   transform-style: preserve-3d;

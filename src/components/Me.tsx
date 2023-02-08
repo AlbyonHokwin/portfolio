@@ -34,7 +34,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         src={picture.url}
                         alt={picture.alt}
                         fill={true}
-                        sizes="(max-width: 350px) 300px, 50vmin"
+                        sizes="(max-width: 788px) 315px ,(max-width: 1100px) 450px, 450px"
                         priority={true}
                     />
                 </div>
@@ -44,7 +44,7 @@ function Me({ picture, pictureGit, socials }: propsType) {
                         src={pictureGit.url}
                         alt={pictureGit.alt}
                         fill={true}
-                        sizes="(max-width: 350px) 300px, 50vmin"
+                        sizes="(max-width: 788px) 315px ,(max-width: 1100px) 450px, 450px"
                         priority={true}
                     />
                 </a>}

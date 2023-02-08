@@ -108,9 +108,9 @@ function Project({ project }: propsType) {
                                 className={styles.image}
                                 src={mainImage.url}
                                 alt={mainImage.alt}
-                                width={mainImage.width}
-                                height={mainImage.height}
-                            />
+                                height={imageHeight}
+                                width={imageHeight * mainImage.aspect}
+                        />
                         </div>
                         {images.map((image, i) => {
                             const idx: number = video ? i + 2 : i + 1;
@@ -121,9 +121,9 @@ function Project({ project }: propsType) {
                                         className={styles.image}
                                         src={image.url}
                                         alt={image.alt}
-                                        width={image.width}
-                                        height={image.height}
-                                    />
+                                        height={imageHeight}
+                                        width={imageHeight * image.aspect}
+                                        />
                                 </div>
                             )
                         })}
