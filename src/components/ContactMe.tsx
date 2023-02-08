@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser';
 import styles from '@/styles/ContactMe.module.css'
+
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -39,7 +40,7 @@ const spinnerIcon = <FontAwesomeIcon icon={faSpinner} spinPulse />
 
 function ContactMe({ myEmail }: propsType) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { register, handleSubmit, reset, formState, formState: { errors, isSubmitSuccessful } } = useForm<Inputs>({
+    const { register, handleSubmit, reset, watch, clearErrors, formState: { errors } } = useForm<Inputs>({
         defaultValues: {
             name: '',
             email: '',
@@ -47,6 +48,8 @@ function ContactMe({ myEmail }: propsType) {
             message: ''
         }
     });
+
+    const { name, email, subject, message } = watch();
 
     const onSubmit: SubmitHandler<Inputs> = data => {
         setIsLoading(true);
@@ -82,11 +85,15 @@ function ContactMe({ myEmail }: propsType) {
                 >
 
                     <motion.div className={styles.inputContainer} variants={inputVariants}>
-                        <input className={styles.input} type="text" placeholder="Nom"
+                        <input
+                            className={`${styles.input} ${errors.name ? styles.error : name ? styles.filled : ''}`}
+                            type="text"
+                            id="input-name"
                             {...register("name", { required: true, maxLength: 80 })}
                             aria-invalid={errors.name ? 'true' : 'false'}
                         />
-                        {errors.name && <div className={styles.error}>{errorIcon}Champ obligatoire</div>}
+                        <label htmlFor="input-name" className={styles.label}>Nom</label>
+                        {errors.name && <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div>}
                     </motion.div>
 
                     <motion.div className={styles.inputContainer} variants={inputVariants}>
@@ -94,9 +101,8 @@ function ContactMe({ myEmail }: propsType) {
                             {...register("email", { required: true, pattern: EMAIL_REGEX })}
                             aria-invalid={errors.email ? 'true' : 'false'}
                         />
-                        <div ></div>
-                        {errors.email?.type === 'required' ? <div className={styles.error}>{errorIcon}Champ obligatoire</div> :
-                            errors.email?.type === 'pattern' && <div className={styles.error}>{errorIcon}Saisissez une adresse-email valide</div>}
+                        {errors.email?.type === 'required' ? <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div> :
+                            errors.email?.type === 'pattern' && <div className={styles.errorMessage}>{errorIcon}Saisissez une adresse-email valide</div>}
                     </motion.div>
 
                     <motion.div className={styles.inputContainer} variants={inputVariants}>
@@ -104,7 +110,7 @@ function ContactMe({ myEmail }: propsType) {
                             {...register("subject", { required: true })}
                             aria-invalid={errors.subject ? 'true' : 'false'}
                         />
-                        {errors.subject && <div className={styles.error}>{errorIcon}Champ obligatoire</div>}
+                        {errors.subject && <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div>}
                     </motion.div>
 
                     <motion.div className={styles.inputContainer} variants={inputVariants}>
@@ -112,7 +118,7 @@ function ContactMe({ myEmail }: propsType) {
                             {...register("message", { required: true })}
                             aria-invalid={errors.message ? 'true' : 'false'}
                         />
-                        {errors.message && <div className={styles.error}>{errorIcon}Champ obligatoire</div>}
+                        {errors.message && <div className={styles.errorMessage}>{errorIcon}Champ obligatoire</div>}
                     </motion.div>
 
                     <motion.button type="submit" className={styles.button} variants={inputVariants}>
