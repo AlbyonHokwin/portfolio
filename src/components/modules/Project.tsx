@@ -96,6 +96,7 @@ function Project({ project }: propsType) {
                                     src={video}
                                     allow="autoplay; fullscreen"
                                     loading='lazy'
+                                    title={`video of ${projectTitle}`}
                                     height={imageHeight}
                                     width={imageHeight * mainImage.aspect}
                                 />
