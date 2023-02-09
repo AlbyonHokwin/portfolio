@@ -68,25 +68,15 @@ function ContactMe({ myEmail }: propsType) {
 
     return (
         <div className={styles.container}>
-            <motion.h2
-                initial={{ opacity: 0, x: '-50vw' }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-            >
+            <h2>
                 Me contacter
-            </motion.h2>
+            </h2>
 
             <FormProvider {...formMethods} >
                 <div className={styles.formContainer}>
-                    <motion.form className={styles.form} onSubmit={handleSubmit(onSubmit)}
-                        initial='hidden'
-                        whileInView='show'
-                        viewport={{ once: true }}
-                        variants={formVariants}
-                    >
+                    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 
-                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                        <div className={styles.inputContainer}>
                             <CustomInput
                                 formName='name'
                                 formOptions={{ required: true, maxLength: 80 }}
@@ -95,9 +85,9 @@ function ContactMe({ myEmail }: propsType) {
                                 errorMessageRequired={errorMessageRequired}
                                 type='text'
                             />
-                        </motion.div>
+                        </div>
 
-                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                        <div className={styles.inputContainer} >
                             <CustomInput
                                 formName='email'
                                 formOptions={{ required: true, pattern: EMAIL_REGEX }}
@@ -107,9 +97,9 @@ function ContactMe({ myEmail }: propsType) {
                                 errorMessagePattern='Saisissez une adresse-email valide'
                                 type='text'
                             />
-                        </motion.div>
+                        </div>
 
-                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                        <div className={styles.inputContainer} >
                             <CustomInput
                                 formName='subject'
                                 formOptions={{ required: true }}
@@ -118,9 +108,9 @@ function ContactMe({ myEmail }: propsType) {
                                 errorMessageRequired={errorMessageRequired}
                                 type='text'
                             />
-                        </motion.div>
+                        </div>
 
-                        <motion.div className={styles.inputContainer} variants={inputVariants}>
+                        <div className={styles.inputContainer} >
                             <CustomInput
                                 formName='message'
                                 formOptions={{ required: true }}
@@ -130,15 +120,15 @@ function ContactMe({ myEmail }: propsType) {
                                 isTextarea
                                 rows={7}
                             />
-                        </motion.div>
+                        </div>
 
                         <motion.button type="submit" className={styles.button}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            variants={inputVariants}>
+                        >
                             {isLoading && spinnerIcon} Envoyer
                         </motion.button>
-                    </motion.form>
+                    </form>
                 </div>
             </FormProvider>
         </div>
