@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '@/styles/Skills.module.css';
 import Skill from './elements/Skill';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 
 import type { skillType } from '@/types/skillType';
 
@@ -40,7 +41,7 @@ const skillVariants = {
 function Skills({ skills }: propsType) {
     return (
         <motion.div className={styles.container}
-            initial='hidden'
+            initial={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,

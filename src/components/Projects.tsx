@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '@/styles/Projects.module.css'
 import type { projectType } from '@/types/projectType';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 
 import Project from './modules/Project';
 
@@ -23,7 +24,7 @@ const variants = {
 function Projects({ projects }: propsType) {
     return (
         <motion.div className={styles.container}
-            initial='hidden'
+            initial={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,

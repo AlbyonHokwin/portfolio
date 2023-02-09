@@ -3,6 +3,7 @@ import styles from '@/styles/AboutMe.module.css';
 import Image from 'next/image';
 import { PortableText } from '@portabletext/react'
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 
 import type { profileType } from '@/types/profileType';
 
@@ -25,7 +26,7 @@ const variants = {
 function AboutMe({ description, pictureAboutMe }: propsType) {
     return (
         <motion.div className={styles.container}
-            initial='hidden'
+            initial={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,
