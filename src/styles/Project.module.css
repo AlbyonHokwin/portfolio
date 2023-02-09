@@ -8,6 +8,12 @@
     background-color: var(--dark-foreground);
     border-radius: 20px;
     padding: 20px 30px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 .titleContainer {
@@ -37,18 +43,11 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-
-.content::-webkit-scrollbar {
-    display: none;
 }
 
 .sliderContainer {
     width: 100%;
-    min-height: max(150px, 50%);
-    flex-grow: 1;
+    height: max(150px, 50%);
     position: relative;
 }
 
