@@ -32,7 +32,7 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
     );
     rotateLine = useTransform(scrollYProgress,
         [0, threshold, 1],
-        [-45, -45, 45],
+        [-45, -45, 90],
     );
 
     return (
@@ -79,6 +79,7 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
                     borderTopStyle: 'solid',
                     borderColor: color,
                     borderTopWidth: 30,
+                    translateX: startAngle / 3,
                     translateY: startAngle,
                     rotate: rotateLine,
                     opacity: opacityLine,
