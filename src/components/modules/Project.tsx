@@ -27,7 +27,7 @@ function Project({ project }: propsType) {
     } = project;
 
     useEffect(() => {
-        imagesContainerRef.current && setImagesContainerHeight(imagesContainerRef.current?.clientHeight)
+        imagesContainerRef.current && setImagesContainerHeight(imagesContainerRef.current?.clientHeight);
     }, [imagesContainerRef]);
 
     let dateStr: string = '';
@@ -48,8 +48,8 @@ function Project({ project }: propsType) {
                                 src={video}
                                 allow="autoplay; fullscreen"
                                 loading='lazy'
-                                height={0.98 * imagesContainerHeight}
-                                width={0.98 * imagesContainerHeight * mainImage.aspect}
+                                height={imagesContainerHeight}
+                                width={imagesContainerHeight * mainImage.aspect}
                             />
                         </div>
                     }
@@ -83,7 +83,7 @@ function Project({ project }: propsType) {
                     {skills.map((skill, i) => {
                         return (
                             <div key={i} className={styles.skill}>
-                                <Skill skill={skill} maxSize={60} />
+                                <Skill skill={skill} maxSize={50} />
                             </div>
                         );
                     })}
