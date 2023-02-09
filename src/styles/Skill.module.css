@@ -24,7 +24,7 @@
     padding: 5px;
     border-radius: 50%;
     z-index: 1;
-    transition: 0.2s;
+    transition: opacity 0.2s;
 }
 
 .skillName h3 {

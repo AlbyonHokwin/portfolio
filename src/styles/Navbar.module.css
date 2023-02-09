@@ -18,22 +18,30 @@
     height: 25px;
     width: 25px;
     cursor: pointer;
+    transition: scale 0.1s;
 }
 
 .menuIcon {
-    position: absolute;
     pointer-events: none;
-    right: 0;
-    height: 0;
-    width: 0;
-    opacity: 0;
-    translate: -600px;
-    transition: all 0.5s;
+    display: none;
+    transition: opacity 0.1s, scale 0.1s;
 }
+
+.homeIcon:hover,
+.menuIcon:hover,
+.socialIcon:hover {
+    scale: 0.9;
+}
+
+.homeIcon:active,
+.socialIcon:active {
+    scale: 1.1;
+}
+
 
 .menuIcon:active {
     opacity: 0;
-    translate: 0 10px;
+    scale: 1.5;
 }
 
 .socials,
@@ -56,7 +64,6 @@
     font-weight: bold;
     letter-spacing: 3px;
     opacity: 1;
-    transition: all 0.5s;
 }
 
 @media screen and (max-width: 1030px) {
@@ -78,11 +85,8 @@
 @media screen and (max-width: 690px) {
     .menuIcon {
         position: relative;
-        height: 25px;
-        width: 25px;
-        opacity: 1;
-        translate: 0;
         pointer-events: auto;
+        display: block;
     }
 
     .socials {
@@ -91,8 +95,10 @@
 
     .menuSection {
         background-color: var(--secondary);
-        width: 0;
-        height: 0;
+        height: 180px;
+        width: 180px;
+        transform: scale(0, 0);
+        opacity: 0;
         overflow: hidden;
         flex-direction: column;
         justify-content: space-evenly;
@@ -104,24 +110,11 @@
         font-size: 16px;
         font-weight: bold;
         letter-spacing: 3px;
-        transition: all 0.2s ease-out 0.2s;
-    }
-
-    .menuSection li {
-        opacity: 0;
-        translate: 200px;
-        transition: all 0.2s;
+        transition: transform 0.2s ease-out, opacity 0.2s;
     }
 
     .menuSection.open {
-        height: 180px;
-        width: 180px;
-        transition: all 0.2s ease-out;
-    }
-
-    .menuSection.open li {
         opacity: 1;
-        translate: 0;
-        transition: all 0.2s 0.2s;
+        transform: scale(1, 1);
     }
 }

@@ -50,7 +50,7 @@
     padding: 0;
     color: var(--font-color-dark);
     background-color: var(--background);
-    transition: 0.3s;
+    transition: top 0.3s, color 0.3s;
 }
 
 :is(.input:focus, .textarea:focus, .filled)~.label {
