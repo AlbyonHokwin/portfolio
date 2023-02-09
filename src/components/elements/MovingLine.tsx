@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { motion, useMotionValue, useMotionValueEvent, useTransform, useAnimationControls } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 import type { CSSProperties } from 'react';
 
@@ -15,90 +15,87 @@ type propsType = {
 
 
 function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, numOfPages }: propsType) {
-    let width = useMotionValue(size);
-    let height = useMotionValue(size);
-    let rotate = useMotionValue(startAngle);
-    let borderTopWidth = useMotionValue(5);
-    let translateY = useMotionValue(0);
+    let opacityCircle = useMotionValue(1);
+    let opacityLine = useMotionValue(1);
+    let rotateLine = useMotionValue(-45);
     let threshold: number = 1;
 
     numOfPages > 1 && (threshold = 1 / (numOfPages - 1));
 
-    const controls = useAnimationControls();
-
-    useEffect(() => {
-        controls.start({
-            rotate: startAngle + 360,
-            scale: [1, 1.05]
-        });
-    }, [controls, startAngle]);
-
-    useMotionValueEvent(scrollYProgress, 'change', value => {
-        if (value >= threshold) {
-            controls.stop();
-            controls.start({
-                scale: [1, 1.05]
-            });
-        } else {
-            controls.stop();
-            controls.start({
-                rotate: startAngle + 360,
-                scale: [1, 1.05]
-            });
-        }
-    })
-
-    width = useTransform(scrollYProgress,
+    opacityCircle = useTransform(scrollYProgress,
         [0, threshold, 1],
-        [size, '500vmin', '500vmin']
+        [1, 0, 0],
     );
-    height = useTransform(scrollYProgress,
+    opacityLine = useTransform(scrollYProgress,
         [0, threshold, 1],
-        [size, '50vmin', '50vmin']
+        [0, 1, 1],
     );
-    rotate = useTransform(scrollYProgress,
+    rotateLine = useTransform(scrollYProgress,
         [0, threshold, 1],
-        [startAngle, -45, 45]
-    );
-    borderTopWidth = useTransform(scrollYProgress,
-        [0, threshold, 1],
-        [5, 20, 40]
-    );
-    translateY = useTransform(scrollYProgress,
-        [0, threshold, 1],
-        [0, -startAngle, -startAngle]
+        [-45, -45, 45],
     );
 
     return (
-        <motion.div
-            style={{
-                position: 'absolute',
-                width,
-                height,
-                borderRadius: '50%',
-                borderTopStyle: 'solid',
-                borderColor: color,
-                borderTopWidth,
-                rotate,
-                translateY,
-            }}
-            animate={controls}
-            transition={{
-                rotate: {
-                    duration: rotateDuration,
-                    ease: "linear",
-                    repeat: Infinity,
-                    repeatType: "loop",
-                },
-                scale: {
-                    duration: 3,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                },
-            }}
-        >
-        </motion.div >
+        <>
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    width: size,
+                    height: size,
+                    borderRadius: '50%',
+                    borderTopStyle: 'solid',
+                    borderColor: color,
+                    borderTopWidth: 5,
+                    rotate: startAngle,
+                    opacity: opacityCircle,
+                }}
+                animate={{
+                    rotate: startAngle + 360,
+                    scale: [1, 1.05]
+                }}
+                transition={{
+                    rotate: {
+                        duration: rotateDuration,
+                        ease: "linear",
+                        repeat: Infinity,
+                        repeatType: "loop",
+                    },
+                    scale: {
+                        duration: 3,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                    },
+                }}
+            >
+            </motion.div >
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    width: '500vmin',
+                    height: '50vmin',
+                    borderRadius: '0%',
+                    borderTopStyle: 'solid',
+                    borderColor: color,
+                    borderTopWidth: 30,
+                    translateY: startAngle,
+                    rotate: rotateLine,
+                    opacity: opacityLine,
+                }}
+                animate={{
+                    scale: [1, 1.05]
+                }}
+                transition={{
+                    scale: {
+                        duration: 3,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                    },
+                }}
+            >
+            </motion.div >
+        </>
     );
 };
 

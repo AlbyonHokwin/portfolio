@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Background.module.css';
 import MovingLine from './elements/MovingLine';
 
-import { motion, useScroll, useMotionValue } from 'framer-motion';
+import { useScroll, useMotionValue } from 'framer-motion';
 
 type useScrollType = ReturnType<typeof useScroll> | null;
 
