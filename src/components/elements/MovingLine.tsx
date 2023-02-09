@@ -48,6 +48,7 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
                     borderTopWidth: 5,
                     rotate: startAngle,
                     opacity: opacityCircle,
+                    willChange: 'rotate, opacity, scale',
                 }}
                 animate={{
                     rotate: startAngle + 360,
@@ -81,6 +82,7 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
                     translateY: startAngle,
                     rotate: rotateLine,
                     opacity: opacityLine,
+                    willChange: 'rotate, opacity, scale',
                 }}
                 animate={{
                     scale: [1, 1.05]
