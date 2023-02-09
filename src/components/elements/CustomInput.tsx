@@ -36,7 +36,7 @@ function CustomInput({
     const error = errors[formName];
 
     const attributes = {
-        className: `${isTextarea ? styles.textarea : styles.input} ${error ? styles.error : value ? styles.filled : ''}`,
+        className: `${isTextarea ? styles.textarea : styles.input} ${error ? styles.error : ''} ${value ? styles.filled : ''}`,
         id,
         ...register(formName, formOptions),
         'aria-invalid': error ? true : false,
