@@ -33,8 +33,6 @@ function Project({ project }: propsType) {
     let dateStr: string = '';
     !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
 
-    console.log(imagesContainerRef.current?.scrollWidth);
-
     return (
         <div className={styles.container}>
             <div className={styles.titleContainer}>
