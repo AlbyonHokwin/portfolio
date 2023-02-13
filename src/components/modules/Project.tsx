@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import styles from '@/styles/Project.module.css'
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
@@ -26,9 +26,18 @@ function Project({ project }: propsType) {
         skills,
     } = project;
 
-    useEffect(() => {
-        imagesContainerRef.current && setImagesContainerHeight(imagesContainerRef.current?.clientHeight);
-    }, [imagesContainerRef]);
+    useLayoutEffect(() => {
+        function updateImagesContainerHeight() {
+            if (imagesContainerRef.current && imagesContainerRef.current?.clientHeight !== imagesContainerHeight) {
+                setImagesContainerHeight(imagesContainerRef.current.clientHeight);
+            }
+        }
+        
+        window.addEventListener('resize', updateImagesContainerHeight);
+        updateImagesContainerHeight();
+
+        return () => window.removeEventListener('resize', updateImagesContainerHeight);
+    }, []);
 
     let dateStr: string = '';
     !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
@@ -46,14 +55,14 @@ function Project({ project }: propsType) {
                             <iframe
                                 className={styles.video}
                                 src={video}
-                                allow="autoplay; fullscreen"
+                                allow="fullscreen"
                                 loading='lazy'
                                 height={imagesContainerHeight}
                                 width={imagesContainerHeight * mainImage.aspect}
                             />
                         </div>
                     }
-                    <div className={styles.imageContainer}>
+                    <div className={styles.imageContainer} style={{ width: imagesContainerHeight * mainImage.aspect }}>
                         <Image
                             style={{ objectFit: "contain" }}
                             className={styles.image}
@@ -65,7 +74,7 @@ function Project({ project }: propsType) {
                     </div>
                     {images.map((image, i) => {
                         return (
-                            <div key={i} className={styles.imageContainer}>
+                            <div key={i} className={styles.imageContainer} style={{ width: imagesContainerHeight * mainImage.aspect }}>
                                 <Image
                                     style={{ objectFit: "contain" }}
                                     className={styles.image}
