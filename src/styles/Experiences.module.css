@@ -17,8 +17,6 @@
   align-items: flex-start;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-  scrollbar-width: auto;
-  scrollbar-color: var(--scrollbar-background);
 }
 
 .experiences::-webkit-scrollbar {
