@@ -40,7 +40,7 @@
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scrollbar-width: auto;
-  scrollbar-color: var(--scrollbar-background);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-background);
 }
 
 .main::-webkit-scrollbar {
