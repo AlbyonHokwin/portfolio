@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '@/styles/Project.module.css'
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
@@ -12,7 +12,7 @@ type propsType = {
 
 function Project({ project }: propsType) {
     const imagesContainerRef = useRef<HTMLDivElement>(null);
-    const [imagesContainerHeight, setImagesContainerHeight] = useState<number>(0);
+    const [imagesContainerHeight, setImagesContainerHeight] = useState<number>(250);
 
     const {
         projectTitle,
@@ -26,7 +26,7 @@ function Project({ project }: propsType) {
         skills,
     } = project;
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         function updateImagesContainerHeight() {
             if (imagesContainerRef.current && imagesContainerRef.current?.clientHeight !== imagesContainerHeight) {
                 setImagesContainerHeight(imagesContainerRef.current.clientHeight);
@@ -37,7 +37,7 @@ function Project({ project }: propsType) {
         updateImagesContainerHeight();
 
         return () => window.removeEventListener('resize', updateImagesContainerHeight);
-    }, []);
+    });
 
     let dateStr: string = '';
     !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
