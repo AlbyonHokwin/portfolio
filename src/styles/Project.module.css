@@ -9,6 +9,7 @@
     background-color: var(--dark-foreground);
     border-radius: 20px;
     padding: 10px 30px;
+    border-bottom: 30px solid var(--dark-foreground);
     overflow-y: auto;
     scrollbar-width: none;
 }
