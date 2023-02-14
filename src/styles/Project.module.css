@@ -48,9 +48,8 @@
 
 .slider {
     width: 100%;
-    min-height: 250px;
-    max-height: 50%;
-    flex-grow: 1;
+    min-height: 350px;
+    max-height: 350px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

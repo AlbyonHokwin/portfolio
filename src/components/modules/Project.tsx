@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import styles from '@/styles/Project.module.css'
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
@@ -11,8 +11,7 @@ type propsType = {
 }
 
 function Project({ project }: propsType) {
-    const imagesContainerRef = useRef<HTMLDivElement>(null);
-    const [imagesContainerHeight, setImagesContainerHeight] = useState<number>(250);
+    const imagesContainerHeight = 350;
 
     const {
         projectTitle,
@@ -26,19 +25,6 @@ function Project({ project }: propsType) {
         skills,
     } = project;
 
-    useEffect(() => {
-        function updateImagesContainerHeight() {
-            if (imagesContainerRef.current && imagesContainerRef.current?.clientHeight !== imagesContainerHeight) {
-                setImagesContainerHeight(imagesContainerRef.current.clientHeight);
-            }
-        }
-        
-        window.addEventListener('resize', updateImagesContainerHeight);
-        updateImagesContainerHeight();
-
-        return () => window.removeEventListener('resize', updateImagesContainerHeight);
-    });
-
     let dateStr: string = '';
     !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
 
@@ -49,7 +35,7 @@ function Project({ project }: propsType) {
                 {!onProgress && <time className={styles.date}>(Fini en {dateStr})</time>}
             </div>
             <div className={styles.content}>
-                <div className={styles.slider} ref={imagesContainerRef}>
+                <div className={styles.slider}>
                     {video &&
                         <div className={styles.videoContainer}>
                             <iframe
