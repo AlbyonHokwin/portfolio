@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '@/styles/AboutMe.module.css';
 import Image from 'next/image';
 import { PortableText } from '@portabletext/react'
-import { motion, MotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { isMobile as deviceIsMobile } from 'react-device-detect';
 
 import type { profileType } from '@/types/profileType';
