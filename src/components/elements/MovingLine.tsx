@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { isMobile as deviceIsMobile } from 'react-device-detect';
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
@@ -19,6 +20,12 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
     let opacityLine = useMotionValue(1);
     let rotateLine = useMotionValue(-45);
     let threshold: number = 1;
+
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsMobile(deviceIsMobile);
+    }, []);
 
     numOfPages > 1 && (threshold = 1 / (numOfPages - 1));
 
@@ -80,7 +87,7 @@ function MovingLine({ size, startAngle, rotateDuration, color, scrollYProgress, 
                     borderTopWidth: 30,
                     translateX: startAngle / 3,
                     translateY: startAngle,
-                    rotate: rotateLine,
+                    rotate: isMobile ? -45 : rotateLine,
                     opacity: opacityLine,
                     willChange: 'rotate',
                 }}
