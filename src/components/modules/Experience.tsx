@@ -34,8 +34,8 @@ function Experience({ experience }: propsType) {
                     className={styles.image}
                     src={logo.url}
                     alt={logo.alt}
-                    width={logo.width}
-                    height={logo.height}
+                    fill
+                    sizes='600px'
                 />
             </div>
             <div className={styles.titleContainer}>
