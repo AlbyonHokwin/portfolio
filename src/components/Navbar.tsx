@@ -1,4 +1,4 @@
-import React, { RefObject, useState } from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faBars, faX } from '@fortawesome/free-solid-svg-icons';
