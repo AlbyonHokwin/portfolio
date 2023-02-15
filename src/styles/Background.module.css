@@ -4,7 +4,6 @@
     left: 0;
     background-color: transparent;
     padding-top: var(--header-height);
-    padding-bottom: 30px;
     width: 100vw;
     height: 100vh;
     display: flex;
