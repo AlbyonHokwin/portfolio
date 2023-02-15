@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Experiences.module.css';
 import Experience from './modules/Experience';
 import { motion } from 'framer-motion';
-import { isMobile } from 'react-device-detect';
+import { isMobile as deviceIsMobile } from 'react-device-detect';
 
 import type { experienceType } from '@/types/experienceType';
 
@@ -22,9 +22,15 @@ const variants = {
 }
 
 function Experiences({ experiences }: propsType) {
+    const [isMobile, setIsMobile] = useState<boolean>(true);
+
+    useEffect(() => {
+        setIsMobile(deviceIsMobile);
+    }, []);
+
     return (
         <motion.div className={styles.container}
-            initial={isMobile ? 'visible' : 'hidden'}
+            animate={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,

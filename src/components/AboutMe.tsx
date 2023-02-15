@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/AboutMe.module.css';
 import Image from 'next/image';
 import { PortableText } from '@portabletext/react'
-import { motion } from 'framer-motion';
-import { isMobile } from 'react-device-detect';
+import { motion, MotionProps } from 'framer-motion';
+import { isMobile as deviceIsMobile } from 'react-device-detect';
 
 import type { profileType } from '@/types/profileType';
 
@@ -24,9 +24,15 @@ const variants = {
 }
 
 function AboutMe({ description, pictureAboutMe }: propsType) {
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsMobile(deviceIsMobile);
+    }, []);
+
     return (
         <motion.div className={styles.container}
-            initial={isMobile ? 'visible' : 'hidden'}
+            animate={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,

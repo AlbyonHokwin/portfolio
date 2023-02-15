@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Projects.module.css'
 import type { projectType } from '@/types/projectType';
 import { motion } from 'framer-motion';
-import { isMobile } from 'react-device-detect';
+import { isMobile as deviceIsMobile } from 'react-device-detect';
 
 import Project from './modules/Project';
 
@@ -22,9 +22,15 @@ const variants = {
 }
 
 function Projects({ projects }: propsType) {
+    const [isMobile, setIsMobile] = useState<boolean>(true);
+
+    useEffect(() => {
+        setIsMobile(deviceIsMobile);
+    }, []);
+
     return (
         <motion.div className={styles.container}
-            initial={isMobile ? 'visible' : 'hidden'}
+            animate={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,

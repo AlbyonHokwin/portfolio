@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Skills.module.css';
 import Skill from './elements/Skill';
 import { motion } from 'framer-motion';
-import { isMobile } from 'react-device-detect';
+import { isMobile as deviceIsMobile } from 'react-device-detect';
 
 import type { skillType } from '@/types/skillType';
 
@@ -39,9 +39,15 @@ const skillVariants = {
 }
 
 function Skills({ skills }: propsType) {
+    const [isMobile, setIsMobile] = useState<boolean>(true);
+
+    useEffect(() => {
+        setIsMobile(deviceIsMobile);
+    }, []);
+
     return (
         <motion.div className={styles.container}
-            initial={isMobile ? 'visible' : 'hidden'}
+            animate={isMobile ? 'visible' : 'hidden'}
             whileInView='visible'
             transition={{
                 delayChildren: 0.1,
