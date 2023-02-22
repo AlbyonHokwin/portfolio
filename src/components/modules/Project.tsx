@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Project.module.css'
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
@@ -11,8 +11,6 @@ type propsType = {
 }
 
 function Project({ project }: propsType) {
-    const imagesContainerHeight = 350;
-
     const {
         projectTitle,
         description,
@@ -24,9 +22,13 @@ function Project({ project }: propsType) {
         githubLinks,
         skills,
     } = project;
+    
+    const imagesContainerHeight = 350;
+    const [dateStr, setDateStr] = useState<string>('');
 
-    let dateStr: string = '';
-    !onProgress && (dateStr = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
+    useEffect(() => {
+        !onProgress && setDateStr(Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
+    })
 
     return (
         <div className={styles.container}>

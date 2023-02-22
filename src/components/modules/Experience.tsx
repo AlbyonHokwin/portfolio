@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Experience.module.css';
 import Image from 'next/image';
 import Skill from '@/components/elements/Skill';
@@ -23,8 +23,13 @@ function Experience({ experience }: propsType) {
         skills,
     } = experience;
 
-    const startDateStr: string = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(startDate));
-    const endDateStr: string = Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(endDate));
+    const [startDateStr, setStartDateStr] = useState<string>('');
+    const [endDateStr, setEndDateStr] = useState<string>('');
+
+    useEffect(() => {
+        setStartDateStr(Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(startDate)));
+        setEndDateStr(Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(endDate)));
+    })
 
     return (
         <div className={styles.container}>
