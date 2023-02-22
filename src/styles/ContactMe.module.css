@@ -52,6 +52,7 @@
 
 .button {
     position: relative;
+    color: var(--background);
     background-color: var(--accent);
     border: none;
     border-radius: 10px;
