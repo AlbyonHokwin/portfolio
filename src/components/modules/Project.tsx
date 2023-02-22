@@ -40,6 +40,7 @@ function Project({ project }: propsType) {
                         <div className={styles.videoContainer}>
                             <iframe
                                 className={styles.video}
+                                title={`Video of ${projectTitle}`}
                                 src={video}
                                 allow="fullscreen"
                                 loading='lazy'
