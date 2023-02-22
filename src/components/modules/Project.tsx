@@ -28,7 +28,7 @@ function Project({ project }: propsType) {
 
     useEffect(() => {
         !onProgress && setDateStr(Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(date)));
-    })
+    }, [onProgress, date]);
 
     return (
         <div className={styles.container}>

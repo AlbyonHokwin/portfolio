@@ -29,7 +29,7 @@ function Experience({ experience }: propsType) {
     useEffect(() => {
         setStartDateStr(Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(startDate)));
         setEndDateStr(Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(new Date(endDate)));
-    })
+    }, [startDate, endDate]);
 
     return (
         <div className={styles.container}>
